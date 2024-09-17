@@ -1,7 +1,11 @@
+import HeroBanner from "./components/HeroBanner"
+import FilterSection from "./components/FilterSection"
+
 export default function Home() {
   return (
     <main>
-      <h2>Homepage</h2>
+      <HeroBanner />
+      <FilterSection />
     </main>
   )
 }
