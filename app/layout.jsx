@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 
 //components//
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main className="flex-grow bg-background">
           {children}
+        <Footer />
         </main>
       </body>
     </html>
