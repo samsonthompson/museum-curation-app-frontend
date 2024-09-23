@@ -24,6 +24,8 @@ async function getMetObjectDetails(objectID) {
     }
 }
 
+
+
 // Function to save data to JSON file
 async function saveDataToFile(filename, data) {
     fs.writeFile(filename, JSON.stringify(data, null, 2), (err) => {
@@ -34,7 +36,7 @@ async function saveDataToFile(filename, data) {
 
 // Fetch data from Met API and save to file
 async function fetchAndSaveMetData() {
-    const metData = await getMetObjects();
+    const metData = await getMetObjectDetails(3223);
     await saveDataToFile('metObjects.json', metData);
 }
 

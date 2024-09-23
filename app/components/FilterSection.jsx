@@ -1,50 +1,72 @@
 'use client'
 
 import { useState } from 'react';
+import mediumsData from '../../data/categories/mediums.json';
+import culturesData from '../../data/categories/cultures.json'
+import centuriesData from '../../data/categories/centuries.json'
+import { fetchHarvardData } from '../../API/harvardAPI';
+
 export default function FilterSection() {
   const [medium, setMedium] = useState('');
   const [date, setDate] = useState('');
   const [culture, setCulture] = useState('');
 
-  const handleCreateExhibition = () => {
-    console.log(`Creating exhibition with ${medium}, ${date}, ${culture}`);
-    // need to add logic to handle creating exhibition
-  };
+  console.log(date, 'date', medium, 'medium', culture, 'culture');
+  
 
+  const handleCreateExhibition = async () => {
+    console.log(`Creating exhibition with Medium ID: ${mediumId}, Century ID: ${centuryId}, Culture ID: ${cultureId}`);
+    
+    const data = await fetchHarvardData(mediumId, centuryId, cultureId);
+    
+    if (data.length > 0) {
+      console.log('Exhibition data:', data);
+      // Do something with the data
+    }
+  };
   return (
     <section className="flex flex-col items-center py-10">
       <div className="space-y-4">
+        {/* Medium Dropdown */}
         <select
           className="p-2 border"
           value={medium}
           onChange={(e) => setMedium(e.target.value)}
         >
           <option value="">Select Medium</option>
-          <option value="Painting">Painting</option>
-          <option value="Sculpture">Sculpture</option>
-          {/* we can add more optons if we want to add an asdvanced search section */}
+          {mediumsData.map((item) => (
+            <option key={item.mediumid} value={item.mediumid}>
+              {item.medium}
+            </option>
+          ))}
         </select>
 
+        {/* Century Dropdown */}
         <select
           className="p-2 border"
           value={date}
           onChange={(e) => setDate(e.target.value)}
         >
-          <option value="">Select Date</option>
-          <option value="2020">2020</option>
-          <option value="2010">2010</option>
-          {/* Add more options */}
+          <option value="">Select Century</option>
+          {centuriesData.map((item) => (
+            <option key={item.centuryId} value={item.centuryId}>
+              {item.century}
+            </option>
+          ))}
         </select>
 
+        {/* Culture Dropdown */}
         <select
           className="p-2 border"
           value={culture}
           onChange={(e) => setCulture(e.target.value)}
         >
           <option value="">Select Culture</option>
-          <option value="Byzantine">Byzantine</option>
-          <option value="Roman">Roman</option>
-          {/* Add more options */}
+          {culturesData.map((item) => (
+            <option key={item.cultureId} value={item.cultureId}>
+              {item.culture}
+            </option>
+          ))}
         </select>
       </div>
 

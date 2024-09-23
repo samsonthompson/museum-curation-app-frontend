@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 import fs from 'fs';
+import centuries from './categories/centuries.json' assert { type: 'json' };
 
 // Load environment variables from .env file
 dotenv.config();
@@ -9,38 +10,55 @@ dotenv.config();
 const HARVARD_API_KEY = process.env.HARVARD_API_KEY;
 const HARVARD_BASE_URL = "https://api.harvardartmuseums.org";
 
-// Harvard Art Museums API functions
-async function getHarvardObjects() {
-    const url = `${HARVARD_BASE_URL}/object?apikey=${HARVARD_API_KEY}&size=10`;
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-}
-
-async function getHarvardObjectDetails(objectId) {
-    const url = `${HARVARD_BASE_URL}/object/${objectId}?apikey=${HARVARD_API_KEY}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    if (data.objectid) {
-        return data;
-    } else {
-        return { error: "Object not found or not available" };
-    }
-}
-
 // Function to save data to JSON file
 async function saveDataToFile(filename, data) {
     fs.writeFile(filename, JSON.stringify(data, null, 2), (err) => {
         if (err) throw err;
-        console.log(`Data overwritten and saved to ${filename}`);
+        console.log(`Data saved to ${filename}`);
     });
 }
 
-// Fetch data from Harvard API and save to file
-async function fetchAndSaveHarvardData() {
-    const harvardData = await getHarvardObjects();
-    await saveDataToFile('harvardObjects.json', harvardData);
+// Function to get objects by medium and century
+async function getHarvardObjectsByMediumAndCentury(mediumId, centuryId, centuryName, size = 100) {
+    const url = `${HARVARD_BASE_URL}/object?apikey=${HARVARD_API_KEY}&medium=${mediumId}&century=${centuryId}&size=${size}`;
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (!data.records || data.records.length === 0) {
+            console.log(`No matching objects found for mediumId ${mediumId}, centuryId: ${centuryId}`);
+            return [];
+        }
+
+        console.log(`Found ${data.records.length} objects for mediumId ${mediumId}, century: ${centuryName}`);
+
+        // Save the data to a JSON file
+        await saveDataToFile(`ivory_${centuryName}.json`, data.records);
+
+        return data.records;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        return { error: 'An error occurred while fetching data.' };
+    }
 }
 
-// Run the Harvard fetching and saving process
-fetchAndSaveHarvardData();
+// Test each century for Ivory
+async function testIvoryAcrossCenturies() {
+    const mediumId = 2028686; // Example mediumId for "Ivory"
+
+    for (const century of centuries) {
+        const { centuryId, century: centuryName } = century;
+
+        console.log(`Testing mediumId ${mediumId}, century: ${centuryName} (centuryId: ${centuryId})`);
+
+        const data = await getHarvardObjectsByMediumAndCentury(mediumId, centuryId, centuryName);
+
+        if (data.length > 0) {
+            console.log(`Data saved for century: ${centuryName}`);
+        } else {
+            console.log(`No data found for century: ${centuryName}`);
+        }
+    }
+}
+
+testIvoryAcrossCenturies();
