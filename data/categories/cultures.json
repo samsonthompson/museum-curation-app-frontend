@@ -1,0 +1,402 @@
+[
+  {
+    "culture": "Turkistani",
+    "cultureId": 37528803
+  },
+  {
+    "culture": "Scythian",
+    "cultureId": 37528515
+  },
+  {
+    "culture": "Himyarite",
+    "cultureId": 37527588
+  },
+  {
+    "culture": "Turkistan",
+    "cultureId": 37528794
+  },
+  {
+    "culture": "Uruk",
+    "cultureId": 37528902
+  },
+  {
+    "culture": "Graeco-Phoenician",
+    "cultureId": 37527507
+  },
+  {
+    "culture": "Zimbabwean",
+    "cultureId": 37528992
+  },
+  {
+    "culture": "Uruguayan",
+    "cultureId": 37528893
+  },
+  {
+    "culture": "Turkmen",
+    "cultureId": 37528812
+  },
+  {
+    "culture": "Seleucid",
+    "cultureId": 37528524
+  },
+  {
+    "culture": "Kushite",
+    "cultureId": 37527903
+  },
+  {
+    "culture": "Australian Aboriginal",
+    "cultureId": 37526904
+  },
+  {
+    "culture": "Spanish Colonial",
+    "cultureId": 37528668
+  },
+  {
+    "culture": "Ethiopian",
+    "cultureId": 37527345
+  },
+  {
+    "culture": "Yemeni",
+    "cultureId": 37528974
+  },
+  {
+    "culture": "Berber",
+    "cultureId": 37527003
+  },
+  {
+    "culture": "Costa Rican",
+    "cultureId": 37527210
+  },
+  {
+    "culture": "Franco-Flemish",
+    "cultureId": 37527408
+  },
+  {
+    "culture": "North African",
+    "cultureId": 37528218
+  },
+  {
+    "culture": "Colombian",
+    "cultureId": 37527183
+  },
+  {
+    "culture": "West African",
+    "cultureId": 37528965
+  },
+  {
+    "culture": "East Asian",
+    "cultureId": 37527309
+  },
+  {
+    "culture": "Tyrolean",
+    "cultureId": 37528830
+  },
+  {
+    "culture": "Celto-Iberian",
+    "cultureId": 37527120
+  },
+  {
+    "culture": "Elamite",
+    "cultureId": 37527327
+  },
+  {
+    "culture": "Olmec",
+    "cultureId": 37528254
+  },
+  {
+    "culture": "East African",
+    "cultureId": 37559745
+  },
+  {
+    "culture": "African",
+    "cultureId": 37526742
+  },
+  {
+    "culture": "Kuba",
+    "cultureId": 37527876
+  },
+  {
+    "culture": "Assyrian",
+    "cultureId": 37526886
+  },
+  {
+    "culture": "Southeast Asian",
+    "cultureId": 37528650
+  },
+  {
+    "culture": "Mittanian",
+    "cultureId": 37528047
+  },
+  {
+    "culture": "Mixtec",
+    "cultureId": 37528056
+  },
+  {
+    "culture": "Polish",
+    "cultureId": 37528362
+  },
+  {
+    "culture": "Ukrainian",
+    "cultureId": 37528848
+  },
+  {
+    "culture": "Faliscan",
+    "cultureId": 37527372
+  },
+  {
+    "culture": "Sumerian",
+    "cultureId": 37528704
+  },
+  {
+    "culture": "Mycenaean",
+    "cultureId": 37528092
+  },
+  {
+    "culture": "Central American",
+    "cultureId": 37527138
+  },
+  {
+    "culture": "Unspecified Islamic",
+    "cultureId": 37528875
+  },
+  {
+    "culture": "Lebanese",
+    "cultureId": 37527921
+  },
+  {
+    "culture": "Nicaraguan",
+    "cultureId": 37528191
+  },
+  {
+    "culture": "Armenian",
+    "cultureId": 37526868
+  },
+  {
+    "culture": "Lycian",
+    "cultureId": 37527948
+  },
+  {
+    "culture": "Kurdish",
+    "cultureId": 37527894
+  },
+  {
+    "culture": "Venezuelan",
+    "cultureId": 37528929
+  },
+  {
+    "culture": "Italo-Corinthian",
+    "cultureId": 37527786
+  },
+  {
+    "culture": "Kongo",
+    "cultureId": 37527858
+  },
+  {
+    "culture": "Palestinian",
+    "cultureId": 37528290
+  },
+  {
+    "culture": "Swedish",
+    "cultureId": 37528713
+  },
+  {
+    "culture": "Indonesian",
+    "cultureId": 37527705
+  },
+  {
+    "culture": "Aztec",
+    "cultureId": 37526949
+  },
+  {
+    "culture": "Carthaginian",
+    "cultureId": 37527093
+  },
+  {
+    "culture": "South Asian",
+    "cultureId": 37528641
+  },
+  {
+    "culture": "Deccani",
+    "cultureId": 37527291
+  },
+  {
+    "culture": "Finnish",
+    "cultureId": 37527390
+  },
+  {
+    "culture": "Dalmatian",
+    "cultureId": 37527273
+  },
+  {
+    "culture": "Sudanese",
+    "cultureId": 37528695
+  },
+  {
+    "culture": "Bohemian",
+    "cultureId": 37527021
+  },
+  {
+    "culture": "Sri Lankan",
+    "cultureId": 37528686
+  },
+  {
+    "culture": "Slavic",
+    "cultureId": 37528587
+  },
+  {
+    "culture": "Honduran",
+    "cultureId": 37527642
+  },
+  {
+    "culture": "Bulgarian",
+    "cultureId": 37527048
+  },
+  {
+    "culture": "Pakistani",
+    "cultureId": 37528281
+  },
+  {
+    "culture": "Javanese",
+    "cultureId": 37527804
+  },
+  {
+    "culture": "Fang",
+    "cultureId": 37527381
+  },
+  {
+    "culture": "Native American",
+    "cultureId": 37528110
+  },
+  {
+    "culture": "Ceylonese",
+    "cultureId": 37527156
+  },
+  {
+    "culture": "Scottish",
+    "cultureId": 37528506
+  },
+  {
+    "culture": "Kazakh",
+    "cultureId": 37527831
+  },
+  {
+    "culture": "Vandalic",
+    "cultureId": 37528920
+  },
+  {
+    "culture": "Villanovan",
+    "cultureId": 37528956
+  },
+  {
+    "culture": "Austro-Hungarian",
+    "cultureId": 37526922
+  },
+  {
+    "culture": "South American",
+    "cultureId": 37528623
+  },
+  {
+    "culture": "Siculo-Punic",
+    "cultureId": 37528551
+  },
+  {
+    "culture": "Pre-Columbian",
+    "cultureId": 37528389
+  },
+  {
+    "culture": "Tusayan",
+    "cultureId": 37528821
+  },
+  {
+    "culture": "Malian",
+    "cultureId": 37527984
+  },
+  {
+    "culture": "Unknown culture",
+    "cultureId": 37528866
+  },
+  {
+    "culture": "Slovakian",
+    "cultureId": 37528596
+  },
+  {
+    "culture": "Samarian",
+    "cultureId": 37528479
+  },
+  {
+    "culture": "Haitian",
+    "cultureId": 37527552
+  },
+  {
+    "culture": "Azerbaijan",
+    "cultureId": 37526940
+  },
+  {
+    "culture": "Indo-Scythian",
+    "cultureId": 37527696
+  },
+  {
+    "culture": "Guatemalan",
+    "cultureId": 37527543
+  },
+  {
+    "culture": "Babylonian",
+    "cultureId": 37526958
+  },
+  {
+    "culture": "Lydian",
+    "cultureId": 37527957
+  },
+  {
+    "culture": "Slovenian",
+    "cultureId": 37528605
+  },
+  {
+    "culture": "Asiatic",
+    "cultureId": 37526877
+  },
+  {
+    "culture": "Serbian",
+    "cultureId": 37528542
+  },
+  {
+    "culture": "Bactrian",
+    "cultureId": 37526967
+  },
+  {
+    "culture": "Uzbek",
+    "cultureId": 37528911
+  },
+  {
+    "culture": "Ostrogoth",
+    "cultureId": 37528263
+  },
+  {
+    "culture": "Yugoslav",
+    "cultureId": 37528983
+  },
+  {
+    "culture": "Arabian",
+    "cultureId": 37526832
+  },
+  {
+    "culture": "Hispano-Moorish",
+    "cultureId": 37527615
+  },
+  {
+    "culture": "Bhutanese",
+    "cultureId": 37527012
+  },
+  {
+    "culture": "Polynesian",
+    "cultureId": 37528371
+  },
+  {
+    "culture": "Akkadian",
+    "cultureId": 37526751
+  },
+  {
+    "culture": "Maltese",
+    "cultureId": 37527993
+  }
+]
