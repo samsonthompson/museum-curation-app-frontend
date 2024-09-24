@@ -2,69 +2,36 @@
 
 import { useState } from 'react';
 import mediumsData from '../../data/categories/mediums.json';
-import culturesData from '../../data/categories/cultures.json'
-import centuriesData from '../../data/categories/centuries.json'
-import { fetchHarvardData } from '../../API/harvardAPI';
+import { fetchHarvardObjectsByMedium } from '../../API/harvardAPI.mjs';
 
 export default function FilterSection() {
-  const [medium, setMedium] = useState('');
-  const [date, setDate] = useState('');
-  const [culture, setCulture] = useState('');
-
-  console.log(date, 'date', medium, 'medium', culture, 'culture');
-  
+  const [mediumId, setMediumId] = useState('');
 
   const handleCreateExhibition = async () => {
-    console.log(`Creating exhibition with Medium ID: ${mediumId}, Century ID: ${centuryId}, Culture ID: ${cultureId}`);
+    console.log(`Fetching data for Medium ID: ${mediumId}`);
     
-    const data = await fetchHarvardData(mediumId, centuryId, cultureId);
+    const data = await fetchHarvardObjectsByMedium(mediumId);
     
     if (data.length > 0) {
       console.log('Exhibition data:', data);
-      // Do something with the data
+    } else {
+      console.log('No data found.');
     }
   };
+
   return (
     <section className="flex flex-col items-center py-10">
       <div className="space-y-4">
         {/* Medium Dropdown */}
         <select
           className="p-2 border"
-          value={medium}
-          onChange={(e) => setMedium(e.target.value)}
+          value={mediumId}
+          onChange={(e) => setMediumId(e.target.value)}
         >
           <option value="">Select Medium</option>
           {mediumsData.map((item) => (
-            <option key={item.mediumid} value={item.mediumid}>
+            <option key={item.mediumId} value={item.mediumId}>
               {item.medium}
-            </option>
-          ))}
-        </select>
-
-        {/* Century Dropdown */}
-        <select
-          className="p-2 border"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        >
-          <option value="">Select Century</option>
-          {centuriesData.map((item) => (
-            <option key={item.centuryId} value={item.centuryId}>
-              {item.century}
-            </option>
-          ))}
-        </select>
-
-        {/* Culture Dropdown */}
-        <select
-          className="p-2 border"
-          value={culture}
-          onChange={(e) => setCulture(e.target.value)}
-        >
-          <option value="">Select Culture</option>
-          {culturesData.map((item) => (
-            <option key={item.cultureId} value={item.cultureId}>
-              {item.culture}
             </option>
           ))}
         </select>
