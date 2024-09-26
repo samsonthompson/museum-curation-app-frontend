@@ -2,33 +2,70 @@
 
 import { useState, useEffect } from 'react';
 import mediumsData from '../../data/categories/mediums.json';
-import { fetchUniqueCulturesByMedium } from '../../API/harvardAPI.mjs';
+import { fetchUniqueCulturesAndCenturiesByMedium, fetchEntriesByMediumCultureCentury } from '../../API/harvardAPI.mjs';
 
 export default function FilterSection({ onCreateExhibition }) {
   const [mediumId, setMediumId] = useState('');
   const [cultures, setCultures] = useState([]);
   const [selectedCulture, setSelectedCulture] = useState('');
+  const [centuries, setCenturies] = useState([]);
+  const [selectedCentury, setSelectedCentury] = useState('');
   const [isCultureDropdownDisabled, setIsCultureDropdownDisabled] = useState(true);
+  const [isCenturyDropdownDisabled, setIsCenturyDropdownDisabled] = useState(true);
+  const [isCreateButtonDisabled, setIsCreateButtonDisabled] = useState(true);
 
   useEffect(() => {
     if (mediumId) {
-      fetchUniqueCulturesByMedium(mediumId).then((uniqueCultures) => {
+      console.log(`Fetching unique cultures and centuries for Medium ID: ${mediumId}`);
+      fetchUniqueCulturesAndCenturiesByMedium(mediumId).then(({ uniqueCultures, uniqueCenturies }) => {
+        console.log(`Fetched unique cultures: ${uniqueCultures}`);
+        console.log(`Fetched unique centuries: ${uniqueCenturies}`);
         setCultures(uniqueCultures);
+        setCenturies(uniqueCenturies);
         setSelectedCulture('');
+        setSelectedCentury('');
         setIsCultureDropdownDisabled(false);
+        setIsCenturyDropdownDisabled(true);
+        setIsCreateButtonDisabled(true);
       });
     } else {
       setCultures([]);
+      setCenturies([]);
       setSelectedCulture('');
+      setSelectedCentury('');
       setIsCultureDropdownDisabled(true);
+      setIsCenturyDropdownDisabled(true);
+      setIsCreateButtonDisabled(true);
     }
   }, [mediumId]);
 
-  const handleCreateExhibition = () => {
-    if (mediumId && selectedCulture) {
-      onCreateExhibition(mediumId, selectedCulture);
+  useEffect(() => {
+    if (selectedCulture) {
+      setIsCenturyDropdownDisabled(false);
     } else {
-      console.log('Please select a medium and a culture before creating an exhibition.');
+      setSelectedCentury('');
+      setIsCenturyDropdownDisabled(true);
+      setIsCreateButtonDisabled(true);
+    }
+  }, [selectedCulture]);
+
+  useEffect(() => {
+    if (selectedCentury) {
+      setIsCreateButtonDisabled(false);
+    } else {
+      setIsCreateButtonDisabled(true);
+    }
+  }, [selectedCentury]);
+
+  const handleCreateExhibition = () => {
+    if (mediumId && selectedCulture && selectedCentury) {
+      console.log(`Creating exhibition with Medium ID: ${mediumId}, Culture: ${selectedCulture}, Century: ${selectedCentury}`);
+      fetchEntriesByMediumCultureCentury(mediumId, selectedCulture, selectedCentury).then((entries) => {
+        console.log(`Fetched entries: ${entries}`);
+        onCreateExhibition(entries);
+      });
+    } else {
+      console.log('Please select a medium, a culture, and a century before creating an exhibition.');
     }
   };
 
@@ -69,11 +106,30 @@ export default function FilterSection({ onCreateExhibition }) {
             </option>
           ))}
         </select>
+
+        {/* Century Dropdown */}
+        <select
+          className="p-2 border"
+          value={selectedCentury}
+          onChange={(e) => {
+            setSelectedCentury(e.target.value);
+            console.log(`Selected Century: ${e.target.value}`);
+          }}
+          disabled={isCenturyDropdownDisabled}
+        >
+          <option value="">Select Century</option>
+          {centuries.map((century, index) => (
+            <option key={index} value={century}>
+              {century}
+            </option>
+          ))}
+        </select>
       </div>
 
       <button
         onClick={handleCreateExhibition}
         className="mt-6 px-6 py-3 bg-foreground text-white font-bold rounded-full"
+        disabled={isCreateButtonDisabled}
       >
         Create Your Own Exhibition
       </button>
