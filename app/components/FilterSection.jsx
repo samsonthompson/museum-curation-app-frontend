@@ -1,138 +1,84 @@
-'use client'
+   // app/components/FilterSection.jsx
+   'use client'
 
-import { useState, useEffect } from 'react';
-import mediumsData from '../../data/categories/mediums.json';
-import { fetchUniqueCulturesAndCenturiesByMedium, fetchEntriesByMediumCultureCentury } from '../../API/harvardAPI.mjs';
+   import { useState, useEffect } from 'react';
+   import { useRouter } from 'next/navigation';
+   import mediums from '../../data/Harvard/mediums.json';
+   import { fetchObjectsByMaterial, checkCacheStatus } from '../../API/harvardAPI.mjs';
 
-export default function FilterSection({ onCreateExhibition }) {
-  const [mediumId, setMediumId] = useState('');
-  const [cultures, setCultures] = useState([]);
-  const [selectedCulture, setSelectedCulture] = useState('');
-  const [centuries, setCenturies] = useState([]);
-  const [selectedCentury, setSelectedCentury] = useState('');
-  const [isCultureDropdownDisabled, setIsCultureDropdownDisabled] = useState(true);
-  const [isCenturyDropdownDisabled, setIsCenturyDropdownDisabled] = useState(true);
-  const [isCreateButtonDisabled, setIsCreateButtonDisabled] = useState(true);
+   export default function FilterSection() {
+     const [selectedMaterial, setSelectedMaterial] = useState('');
+     const [cultures, setCultures] = useState([]);
+     const [isLoading, setIsLoading] = useState(false);
+     const router = useRouter();
 
-  useEffect(() => {
-    if (mediumId) {
-      console.log(`Fetching unique cultures and centuries for Medium ID: ${mediumId}`);
-      fetchUniqueCulturesAndCenturiesByMedium(mediumId).then(({ uniqueCultures, uniqueCenturies }) => {
-        console.log(`Fetched unique cultures: ${uniqueCultures}`);
-        console.log(`Fetched unique centuries: ${uniqueCenturies}`);
-        setCultures(uniqueCultures);
-        setCenturies(uniqueCenturies);
-        setSelectedCulture('');
-        setSelectedCentury('');
-        setIsCultureDropdownDisabled(false);
-        setIsCenturyDropdownDisabled(true);
-        setIsCreateButtonDisabled(true);
-      });
-    } else {
-      setCultures([]);
-      setCenturies([]);
-      setSelectedCulture('');
-      setSelectedCentury('');
-      setIsCultureDropdownDisabled(true);
-      setIsCenturyDropdownDisabled(true);
-      setIsCreateButtonDisabled(true);
-    }
-  }, [mediumId]);
+     useEffect(() => {
+       // Check cache status for all mediums when component mounts
+       mediums.forEach(medium => {
+         const mediumId = medium.mediumId || medium;
+         checkCacheStatus(mediumId);
+       });
+     }, []);
 
-  useEffect(() => {
-    if (selectedCulture) {
-      setIsCenturyDropdownDisabled(false);
-    } else {
-      setSelectedCentury('');
-      setIsCenturyDropdownDisabled(true);
-      setIsCreateButtonDisabled(true);
-    }
-  }, [selectedCulture]);
+     const fetchCultures = async (mediumId) => {
+       if (mediumId) {
+         console.log(`[FilterSection] Fetching cultures for medium: ${mediumId}`);
+         setIsLoading(true);
+         try {
+           const data = await fetchObjectsByMaterial(mediumId);
+           console.log(`[FilterSection] Received ${data.length} entries for ${mediumId}`);
+           const uniqueCultures = [...new Set(data.map(item => item.culture).filter(Boolean))];
+           console.log(`[FilterSection] Extracted ${uniqueCultures.length} unique cultures`);
+           setCultures(uniqueCultures);
+           
+           console.log(`[FilterSection] Number of entries for ${mediumId}: ${data.length}`);
+           
+           // Check cache status after fetching
+           checkCacheStatus(mediumId);
+         } catch (error) {
+           console.error('[FilterSection] Error fetching objects:', error);
+         } finally {
+           setIsLoading(false);
+         }
+       }
+     };
 
-  useEffect(() => {
-    if (selectedCentury) {
-      setIsCreateButtonDisabled(false);
-    } else {
-      setIsCreateButtonDisabled(true);
-    }
-  }, [selectedCentury]);
+     const handleMaterialChange = (e) => {
+       const mediumId = e.target.value;
+       console.log(`[FilterSection] Material selected: ${mediumId}`);
+       setSelectedMaterial(mediumId);
+       fetchCultures(mediumId);
+     };
 
-  const handleCreateExhibition = () => {
-    if (mediumId && selectedCulture && selectedCentury) {
-      console.log(`Creating exhibition with Medium ID: ${mediumId}, Culture: ${selectedCulture}, Century: ${selectedCentury}`);
-      fetchEntriesByMediumCultureCentury(mediumId, selectedCulture, selectedCentury).then((entries) => {
-        console.log(`Fetched entries: ${entries}`);
-        onCreateExhibition(entries);
-      });
-    } else {
-      console.log('Please select a medium, a culture, and a century before creating an exhibition.');
-    }
-  };
+     const handleCreateExhibition = () => {
+       if (selectedMaterial) {
+         router.push(`/exhibition?medium=${selectedMaterial}`);
+       } else {
+         alert('Please select a material first');
+       }
+     };
 
-  return (
-    <section className="flex flex-col items-center py-10">
-      <div className="space-y-4">
-        {/* Medium Dropdown */}
-        <select
-          className="p-2 border"
-          value={mediumId}
-          onChange={(e) => {
-            setMediumId(e.target.value);
-            console.log(`Selected Medium ID: ${e.target.value}`);
-          }}
-        >
-          <option value="">Select Medium</option>
-          {mediumsData.map((item) => (
-            <option key={item.mediumId} value={item.mediumId}>
-              {item.medium}
-            </option>
-          ))}
-        </select>
+     return (
+       <section>
+         <select onChange={handleMaterialChange}>
+           <option value="">Select Material</option>
+           {mediums.map((medium, index) => (
+             <option key={index} value={medium.mediumId || medium}>{medium.medium || medium}</option>
+           ))}
+         </select>
 
-        {/* Culture Dropdown */}
-        <select
-          className="p-2 border"
-          value={selectedCulture}
-          onChange={(e) => {
-            setSelectedCulture(e.target.value);
-            console.log(`Selected Culture: ${e.target.value}`);
-          }}
-          disabled={isCultureDropdownDisabled}
-        >
-          <option value="">Select Culture</option>
-          {cultures.map((culture, index) => (
-            <option key={index} value={culture}>
-              {culture}
-            </option>
-          ))}
-        </select>
+         {isLoading && <p>Loading...</p>}
 
-        {/* Century Dropdown */}
-        <select
-          className="p-2 border"
-          value={selectedCentury}
-          onChange={(e) => {
-            setSelectedCentury(e.target.value);
-            console.log(`Selected Century: ${e.target.value}`);
-          }}
-          disabled={isCenturyDropdownDisabled}
-        >
-          <option value="">Select Century</option>
-          {centuries.map((century, index) => (
-            <option key={index} value={century}>
-              {century}
-            </option>
-          ))}
-        </select>
-      </div>
+         {/* <select disabled={cultures.length === 0}>
+           <option value="">Select Culture</option>
+           {cultures.map((culture, index) => (
+             <option key={index} value={culture}>{culture}</option>
+           ))}
+         </select> */}
 
-      <button
-        onClick={handleCreateExhibition}
-        className="mt-6 px-6 py-3 bg-foreground text-white font-bold rounded-full"
-        disabled={isCreateButtonDisabled}
-      >
-        Create Your Own Exhibition
-      </button>
-    </section>
-  );
-}
+         <button onClick={handleCreateExhibition} disabled={!selectedMaterial}>
+           CREATE YOUR EXHIBITION
+         </button>
+       </section>
+     );
+   }

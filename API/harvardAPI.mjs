@@ -1,28 +1,85 @@
-import dotenv from 'dotenv';
+import NodeCache from 'node-cache';
 
-dotenv.config();
-
-const HARVARD_API_KEY = process.env.HARVARD_API_KEY;
 const HARVARD_BASE_URL = "https://api.harvardartmuseums.org";
+const HARVARD_API_KEY = process.env.NEXT_PUBLIC_HARVARD_API_KEY;
+const cache = new NodeCache({ stdTTL: 3600 }); // Cache for 1 hour
 
-// Verify that the API key is loaded correctly
-if (HARVARD_API_KEY) {
-    console.log('Harvard API key is loaded');
-} else {
-    console.error('Harvard API key is not defined. Check your .env file.');
+export async function fetchObjectsByMaterial(mediumId) {
+    console.log(`[API] Fetching objects for medium: ${mediumId}`);
+    const cacheKey = `material-${mediumId}`;
+    const cachedData = cache.get(cacheKey);
+
+    if (cachedData) {
+        console.log(`[API] Cache HIT for ${mediumId}. Returning ${cachedData.length} cached entries.`);
+        return cachedData;
+    }
+
+    console.log(`[API] Cache MISS for ${mediumId}. Fetching fresh data.`);
+    let entries = [];
+    let page = 1;
+    const pageSize = 100;
+
+    try {
+        while (true) {
+            const url = `${HARVARD_BASE_URL}/object?apikey=${HARVARD_API_KEY}&medium=${mediumId}&size=${pageSize}&page=${page}`;
+            console.log(`[API] Fetching page ${page} for ${mediumId}`);
+            const response = await fetch(url);
+            
+            if (response.status === 401) {
+                console.error('[API] Unauthorized: Invalid API key');
+                throw new Error('Unauthorized: Invalid API key');
+            }
+
+            const data = await response.json();
+
+            if (data.records && data.records.length > 0) {
+                entries = entries.concat(data.records);
+                console.log(`[API] Fetched ${data.records.length} records on page ${page} for ${mediumId}`);
+                page++;
+                
+                // Check if we've reached the last page
+                if (data.info.next === null || data.records.length < pageSize) {
+                    console.log(`[API] Reached last page for ${mediumId}`);
+                    break;
+                }
+            } else {
+                console.log(`[API] No more records found after page ${page - 1} for ${mediumId}`);
+                break;
+            }
+        }
+
+        console.log(`[API] Total entries fetched for ${mediumId}: ${entries.length}`);
+        console.log(`[API] Caching ${entries.length} entries for ${mediumId}`);
+        cache.set(cacheKey, entries);
+        return entries;
+    } catch (error) {
+        console.error(`[API] Error fetching data for ${mediumId}:`, error);
+        throw error;
+    }
 }
 
-// Function to test the API key
+// Add a function to check cache status
+export function checkCacheStatus(mediumId) {
+    const cacheKey = `material-${mediumId}`;
+    const cachedData = cache.get(cacheKey);
+    if (cachedData) {
+        console.log(`[API] Cache contains ${cachedData.length} entries for ${mediumId}`);
+        return true;
+    } else {
+        console.log(`[API] No cache found for ${mediumId}`);
+        return false;
+    }
+}
+
+// Optional: Test the API key when this module is imported
 export const testHarvardApiKey = async () => {
     try {
         const response = await fetch(`${HARVARD_BASE_URL}/object?apikey=${HARVARD_API_KEY}&size=1`);
-        const data = await response.json();
-        
         if (response.ok) {
             console.log('Harvard API key is valid and working.');
             return true;
         } else {
-            console.error('Harvard API key is invalid or there was an error:', data.error);
+            console.error('Harvard API key is invalid or there was an error.');
             return false;
         }
     } catch (error) {
@@ -31,99 +88,7 @@ export const testHarvardApiKey = async () => {
     }
 };
 
-// Function to fetch all objects by medium and return a list of unique cultures and centuries
-export const fetchUniqueCulturesAndCenturiesByMedium = async (mediumId) => {
-    let uniqueCultures = new Set();
-    let uniqueCenturies = new Set();
-    let page = 1;
-    const pageSize = 100;
-
-    try {
-        while (true) {
-            const url = `${HARVARD_BASE_URL}/object?apikey=${HARVARD_API_KEY}&medium=${mediumId}&size=${pageSize}&page=${page}`;
-            const response = await fetch(url);
-            
-            if (response.status === 401) {
-                throw new Error('Unauthorized: Invalid API key');
-            }
-
-            const data = await response.json();
-
-            if (data.records && data.records.length > 0) {
-                data.records.forEach(record => {
-                    if (record.culture) {
-                        uniqueCultures.add(record.culture);
-                    }
-                    if (record.century) {
-                        uniqueCenturies.add(record.century);
-                    }
-                });
-                console.log(`Fetched ${data.records.length} records on page ${page}`);
-                page++;
-            } else {
-                console.log(`No more records found after page ${page - 1}`);
-                break;
-            }
-        }
-
-        const uniqueCulturesArray = Array.from(uniqueCultures);
-        const uniqueCenturiesArray = Array.from(uniqueCenturies);
-        console.log('Unique cultures:', uniqueCulturesArray);
-        console.log('Unique centuries:', uniqueCenturiesArray);
-        return { uniqueCultures: uniqueCulturesArray, uniqueCenturies: uniqueCenturiesArray };
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        return { uniqueCultures: [], uniqueCenturies: [] };
-    }
-};
-
-// Function to fetch entries by medium, culture, and century
-export const fetchEntriesByMediumCultureCentury = async (mediumId, culture, century) => {
-    let entries = [];
-    let page = 1;
-    const pageSize = 100;
-
-    try {
-        while (true) {
-            const url = `${HARVARD_BASE_URL}/object?apikey=${HARVARD_API_KEY}&medium=${mediumId}&culture=${culture}&century=${century}&size=${pageSize}&page=${page}`;
-            const response = await fetch(url);
-            
-            if (response.status === 401) {
-                throw new Error('Unauthorized: Invalid API key');
-            }
-
-            const data = await response.json();
-
-            if (data.records && data.records.length > 0) {
-                entries = entries.concat(data.records);
-                console.log(`Fetched ${data.records.length} records on page ${page}`);
-                page++;
-            } else {
-                console.log(`No more records found after page ${page - 1}`);
-                break;
-            }
-        }
-
-        console.log('Fetched entries:', entries);
-        return entries;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        return [];
-    }
-};
-
-// Test the API key when this module is imported
-testHarvardApiKey().catch(error => {
-    console.error('Error during API key test:', error);
-});
-
-// Only run fetchUniqueCulturesAndCenturiesByMedium if this file is run directly
-if (import.meta.url === `file://${process.argv[1]}`) {
-    const mediumId = '2028206'; // Example medium ID
-    fetchUniqueCulturesAndCenturiesByMedium(mediumId).then(({ uniqueCultures, uniqueCenturies }) => {
-        console.log('Unique cultures:', uniqueCultures);
-        console.log('Unique centuries:', uniqueCenturies);
-    }).catch(error => {
-        console.error('Error during fetchUniqueCulturesAndCenturiesByMedium:', error);
-    });
-}
+// Uncomment to test the API key when this module is imported
+// testHarvardApiKey().catch(error => {
+//     console.error('Error during API key test:', error);
+// });
