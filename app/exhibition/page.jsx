@@ -1,29 +1,36 @@
-'use client'
+import { fetchObjectsByCulture } from '../../API/harvardAPI.mjs';
+import cultures from '../../data/Harvard/cultures.json';
+import Carousel from '../components/Carousel';
 
-import React, { useState, useEffect } from 'react'
-import Carousel from '../components/Carousel'
+export async function generateMetadata({ searchParams }) {
+  console.log('[Exhibition] generateMetadata - searchParams:', searchParams);
+  const culture = cultures.find(c => c.cultureId.toString() === searchParams.id);
+  console.log('[Exhibition] generateMetadata - found culture:', culture);
+  return { title: `Exhibition: ${culture ? culture.culture : 'Unknown Culture'}` };
+}
 
-export default function Page() {
-  const [isCarouselLoaded, setIsCarouselLoaded] = useState(false);
+export default async function Exhibition({ searchParams }) {
+  console.log('[Exhibition] Starting Exhibition component - searchParams:', searchParams);
+  const { id } = searchParams;
+  console.log('[Exhibition] Extracted id:', id);
 
-  useEffect(() => {
-    setIsCarouselLoaded(true);
-  }, []);
+  console.log('[Exhibition] Cultures data:', cultures);
+  const culture = cultures.find(c => c.cultureId.toString() === id);
+  console.log('[Exhibition] Found culture:', culture);
 
-  return (
-    <div>
-      <h1>Exhibition</h1>
-      {isCarouselLoaded ? (
-        <div>
-          <Carousel />
-          <p>Carousel loaded successfully!</p>
-        </div>
-      ) : (
-        <div>
-          <p>Loading carousel...</p>
-          <p>Please wait while the carousel is being loaded.</p>
-        </div>
-      )}
-    </div>
-  )
+  if (!culture) {
+    console.log('[Exhibition] Culture not found, returning error message');
+    return <div>Invalid culture selection. Please go back and select a culture.</div>;
+  }
+
+  console.log('[Exhibition] Fetching objects for culture:', culture);
+  const exhibitionData = await fetchObjectsByCulture(culture.cultureId, culture.culture);
+  console.log('[Exhibition] Fetched exhibition data:', exhibitionData);
+
+  if (!exhibitionData || exhibitionData.length === 0) {
+    console.log('[Exhibition] No items found for culture');
+    return <div>No items found for this culture. Please try another culture.</div>;
+  }
+
+  return <Carousel items={exhibitionData} culture={culture} />;
 }
