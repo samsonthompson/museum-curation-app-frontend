@@ -9,10 +9,15 @@ export default function Carousel({ items, culture }) {
 
   useEffect(() => {
     if (items && items.length > 0) {
+      console.log('[Carousel] Items received:', items);
       const mediums = [...new Set(items.map(item => item.medium).filter(Boolean))];
       setUniqueMediums(mediums);
     }
   }, [items]);
+
+  useEffect(() => {
+    console.log('[Carousel] Culture received:', culture);
+  }, [culture]);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % filteredItems.length);
@@ -35,7 +40,7 @@ export default function Carousel({ items, culture }) {
   return (
     <div className="bg-background text-foreground">
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-serif font-bold mb-6 text-center">{culture.culture} pieces from the Harvard Art collection</h1>
+        <h1 className="text-3xl font-serif font-bold mb-6 text-center">{culture.culture} entries from the Harvard Art collection</h1>
         
         <div className="carousel bg-offWhite shadow-lg rounded-lg p-6">
           <div className="flex justify-between items-center mb-4">

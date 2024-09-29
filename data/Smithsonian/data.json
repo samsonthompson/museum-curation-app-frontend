@@ -1,0 +1,1158 @@
+{
+  "status": 200,
+  "responseCode": 1,
+  "response": {
+    "rows": [
+      {
+        "id": "ld1-1646149545906-1646150201926-2",
+        "title": "On polyphonic construction : an analysis of Ju'hoan vocal music (Namibia) / E. Olivier",
+        "unitCode": "SIL",
+        "type": "edanmdm",
+        "url": "edanmdm:siris_sil_1069727",
+        "content": {
+          "freetext": {
+            "date": [
+              {
+                "label": "Date",
+                "content": "2007"
+              }
+            ],
+            "name": [
+              {
+                "label": "Author",
+                "content": "Olivier, Emmanuelle"
+              },
+              {
+                "label": "Author",
+                "content": "Smithsonian Libraries African Art Index Project DSI"
+              }
+            ],
+            "notes": [
+              {
+                "label": "Notes",
+                "content": "Music."
+              }
+            ],
+            "place": [
+              {
+                "label": "Place",
+                "content": "Namibia"
+              }
+            ],
+            "topic": [
+              {
+                "label": "Topic",
+                "content": "Music"
+              },
+              {
+                "label": "Topic",
+                "content": "Songs, !Kung"
+              },
+              {
+                "label": "Topic",
+                "content": "Musical meter and rhythm"
+              },
+              {
+                "label": "Topic",
+                "content": "Singing"
+              }
+            ],
+            "dataSource": [
+              {
+                "label": "Data Source",
+                "content": "Smithsonian Libraries"
+              }
+            ],
+            "identifier": [
+              {
+                "label": "Call number",
+                "content": "ML5 .A25"
+              }
+            ],
+            "objectType": [
+              {
+                "label": "Type",
+                "content": "Articles"
+              }
+            ]
+          },
+          "indexedStructured": {
+            "date": [
+              "2000s"
+            ],
+            "name": [
+              "Smithsonian Libraries",
+              "Olivier, Emmanuelle"
+            ],
+            "place": [
+              "Namibia"
+            ],
+            "topic": [
+              "Songs, !Kung",
+              "Singing",
+              "Music",
+              "Musical meter and rhythm"
+            ],
+            "culture": [
+              "!Kung (African people)"
+            ],
+            "language": [
+              "English language"
+            ],
+            "object_type": [
+              "Articles"
+            ]
+          },
+          "descriptiveNonRepeating": {
+            "title": {
+              "label": "Title",
+              "content": "On polyphonic construction : an analysis of Ju'hoan vocal music (Namibia) / E. Olivier"
+            },
+            "record_ID": "siris_sil_1069727",
+            "unit_code": "SIL",
+            "title_sort": "ON POLYPHONIC CONSTRUCTION : AN ANALYSIS OF JUHOAN VOCAL MUSIC NAMIBIA E OLIVIER",
+            "data_source": "Smithsonian Libraries",
+            "record_link": "https://siris-libraries.si.edu/ipac20/ipac.jsp?&profile=liball&source=~!silibraries&uri=full=3100001~!1069727~!0#focus",
+            "metadata_usage": {
+              "text": "",
+              "access": "CC0"
+            }
+          }
+        },
+        "hash": "c7da8c21a66fd834efb68380f96626e2ab8aec6b",
+        "docSignature": "96f4dabc819ebdab298d40a0397e2e38",
+        "timestamp": "1498153816",
+        "lastTimeUpdated": "1661961698",
+        "version": "0"
+      },
+      {
+        "id": "ld1-1646149545906-1646150364868-2",
+        "title": "Bushmen / Douglas Fraser",
+        "unitCode": "SIL",
+        "type": "edanmdm",
+        "url": "edanmdm:siris_sil_598889",
+        "content": {
+          "freetext": {
+            "date": [
+              {
+                "label": "Date",
+                "content": "1968"
+              }
+            ],
+            "name": [
+              {
+                "label": "Author",
+                "content": "Fraser, Douglas 1929-1982"
+              },
+              {
+                "label": "Author",
+                "content": "Smithsonian Libraries African Art Index Project DSI"
+              }
+            ],
+            "notes": [
+              {
+                "label": "Notes",
+                "content": "Plans 15-16 (following page 48)."
+              },
+              {
+                "label": "Notes",
+                "content": "AFAINDEX5"
+              }
+            ],
+            "place": [
+              {
+                "label": "Place",
+                "content": "Kalahari Desert"
+              }
+            ],
+            "topic": [
+              {
+                "label": "Topic",
+                "content": "San camps (Temporary settlements).)"
+              }
+            ],
+            "dataSource": [
+              {
+                "label": "Data Source",
+                "content": "Smithsonian Libraries"
+              }
+            ],
+            "identifier": [
+              {
+                "label": "Call number",
+                "content": "GN413 .F7X"
+              }
+            ],
+            "objectType": [
+              {
+                "label": "Type",
+                "content": "Articles"
+              }
+            ]
+          },
+          "indexedStructured": {
+            "date": [
+              "1960s"
+            ],
+            "name": [
+              "Fraser, Douglas",
+              "Smithsonian Libraries"
+            ],
+            "place": [
+              "Kalahari Desert"
+            ],
+            "topic": [
+              "San camps (Temporary settlements).)"
+            ],
+            "culture": [
+              "!Kung (African people)",
+              "San (African people)"
+            ],
+            "language": [
+              "English language"
+            ],
+            "object_type": [
+              "Articles"
+            ]
+          },
+          "descriptiveNonRepeating": {
+            "title": {
+              "label": "Title",
+              "content": "Bushmen / Douglas Fraser"
+            },
+            "record_ID": "siris_sil_598889",
+            "unit_code": "SIL",
+            "title_sort": "BUSHMEN DOUGLAS FRASER",
+            "data_source": "Smithsonian Libraries",
+            "record_link": "https://siris-libraries.si.edu/ipac20/ipac.jsp?&profile=liball&source=~!silibraries&uri=full=3100001~!598889~!0#focus",
+            "metadata_usage": {
+              "text": "",
+              "access": "CC0"
+            }
+          }
+        },
+        "hash": "24ff5bea66cf19bb407e22b9a7c9ea3f1c2c68ad",
+        "docSignature": "0f8e37e755ea9f511e9f5250054602dc",
+        "timestamp": "1577178610",
+        "lastTimeUpdated": "1661961809",
+        "version": "0"
+      },
+      {
+        "id": "ld1-1646149545906-1646150091640-1",
+        "title": "Nisa, the life and words of a !Kung woman / Marjorie Shostak",
+        "unitCode": "SIL",
+        "type": "edanmdm",
+        "url": "edanmdm:siris_sil_611089",
+        "content": {
+          "freetext": {
+            "date": [
+              {
+                "label": "Date",
+                "content": "2000"
+              },
+              {
+                "label": "Date",
+                "content": "C2000"
+              }
+            ],
+            "name": [
+              {
+                "label": "Author",
+                "content": "Shostak, Marjorie 1945-1996"
+              },
+              {
+                "label": "Author",
+                "content": "Nisa"
+              },
+              {
+                "label": "Subject",
+                "content": "Nisa"
+              }
+            ],
+            "topic": [
+              {
+                "label": "Topic",
+                "content": "Social life and customs"
+              }
+            ],
+            "dataSource": [
+              {
+                "label": "Data Source",
+                "content": "Smithsonian Libraries"
+              }
+            ],
+            "identifier": [
+              {
+                "label": "Call number",
+                "content": "DT797.N57 S53 2000"
+              }
+            ],
+            "objectType": [
+              {
+                "label": "Type",
+                "content": "Biography"
+              }
+            ],
+            "physicalDescription": [
+              {
+                "label": "Physical description",
+                "content": "365 p. : ill. ; 24 cm"
+              }
+            ]
+          },
+          "indexedStructured": {
+            "date": [
+              "2000s"
+            ],
+            "name": [
+              "Shostak, Marjorie",
+              "Nisa"
+            ],
+            "topic": [
+              "Society"
+            ],
+            "culture": [
+              "!Kung (African people)"
+            ],
+            "language": [
+              "English language"
+            ],
+            "object_type": [
+              "Biographies"
+            ]
+          },
+          "descriptiveNonRepeating": {
+            "title": {
+              "label": "Title",
+              "content": "Nisa, the life and words of a !Kung woman / Marjorie Shostak"
+            },
+            "record_ID": "siris_sil_611089",
+            "unit_code": "SIL",
+            "title_sort": "NISA THE LIFE AND WORDS OF A KUNG WOMAN MARJORIE SHOSTAK",
+            "data_source": "Smithsonian Libraries",
+            "record_link": "https://siris-libraries.si.edu/ipac20/ipac.jsp?&profile=liball&source=~!silibraries&uri=full=3100001~!611089~!0#focus",
+            "metadata_usage": {
+              "text": "",
+              "access": "CC0"
+            }
+          }
+        },
+        "hash": "10b6d0cdc03c455d4c48cb0d514080d85e41909d",
+        "docSignature": "6bf554dde15dcd555526015030026961",
+        "timestamp": "1498154317",
+        "lastTimeUpdated": "1661961888",
+        "version": "0"
+      },
+      {
+        "id": "ld1-1646149545906-1646150239736-2",
+        "title": "Bushmen / by Peter Godwin; photographs by Chris Johns",
+        "unitCode": "SIL",
+        "type": "edanmdm",
+        "url": "edanmdm:siris_sil_630379",
+        "content": {
+          "freetext": {
+            "date": [
+              {
+                "label": "Date",
+                "content": "2001"
+              }
+            ],
+            "name": [
+              {
+                "label": "Author",
+                "content": "Godwin, Peter"
+              },
+              {
+                "label": "Author",
+                "content": "Johns, Chris"
+              },
+              {
+                "label": "Author",
+                "content": "Smithsonian Libraries African Art Index Project DSI"
+              }
+            ],
+            "notes": [
+              {
+                "label": "Notes",
+                "content": "Ill. (col.), map."
+              },
+              {
+                "label": "Notes",
+                "content": "The remaining groups of San peoples in southern Africa struggle to adapt to the changes around them."
+              }
+            ],
+            "place": [
+              {
+                "label": "Place",
+                "content": "Namibia"
+              },
+              {
+                "label": "Place",
+                "content": "Kalahari Desert"
+              },
+              {
+                "label": "Place",
+                "content": "South Africa"
+              },
+              {
+                "label": "Place",
+                "content": "Northern Cape"
+              }
+            ],
+            "dataSource": [
+              {
+                "label": "Data Source",
+                "content": "Smithsonian Libraries"
+              }
+            ],
+            "identifier": [
+              {
+                "label": "Call number",
+                "content": "G1 .N27"
+              }
+            ],
+            "objectType": [
+              {
+                "label": "Type",
+                "content": "Articles"
+              }
+            ]
+          },
+          "indexedStructured": {
+            "date": [
+              "2000s"
+            ],
+            "name": [
+              "Godwin, Peter",
+              "Smithsonian Libraries",
+              "Johns, Chris"
+            ],
+            "place": [
+              "Northern Cape",
+              "Kalahari Desert",
+              "Namibia",
+              "South Africa"
+            ],
+            "culture": [
+              "!Kung (African people)",
+              "San (African people)"
+            ],
+            "language": [
+              "English language"
+            ],
+            "object_type": [
+              "Articles"
+            ]
+          },
+          "descriptiveNonRepeating": {
+            "title": {
+              "label": "Title",
+              "content": "Bushmen / by Peter Godwin; photographs by Chris Johns"
+            },
+            "record_ID": "siris_sil_630379",
+            "unit_code": "SIL",
+            "title_sort": "BUSHMEN BY PETER GODWIN PHOTOGRAPHS BY CHRIS JOHNS",
+            "data_source": "Smithsonian Libraries",
+            "record_link": "https://siris-libraries.si.edu/ipac20/ipac.jsp?&profile=liball&source=~!silibraries&uri=full=3100001~!630379~!0#focus",
+            "metadata_usage": {
+              "text": "",
+              "access": "CC0"
+            }
+          }
+        },
+        "hash": "30417488c67978a789b20d378968d54ae47a6a2d",
+        "docSignature": "c4fa30d4e1dbbc94d252a459c6294364",
+        "timestamp": "1498154317",
+        "lastTimeUpdated": "1661962576",
+        "version": "0"
+      },
+      {
+        "id": "ld1-1646149545906-1646150350342-1",
+        "title": "Where the roads all end : photography and anthropology in the Kalahari / Ilisa Barbash ; foreword by Paul Theroux",
+        "unitCode": "SIL",
+        "type": "edanmdm",
+        "url": "edanmdm:siris_sil_1062613",
+        "content": {
+          "freetext": {
+            "date": [
+              {
+                "label": "Date",
+                "content": "2016"
+              },
+              {
+                "label": "Date",
+                "content": "20th century"
+              }
+            ],
+            "name": [
+              {
+                "label": "author",
+                "content": "Barbash, Ilisa 1959-"
+              },
+              {
+                "label": "Subject",
+                "content": "Marshall family"
+              },
+              {
+                "label": "Subject",
+                "content": "Peabody Museum of Archaeology and Ethnology Archives Photograph collections"
+              }
+            ],
+            "notes": [
+              {
+                "label": "Notes",
+                "content": "Reviewed by Pascal James Imperato in African studies review (Piscataway, NJ) 61 (3) September 2018, pages 249-251 (DT1.A1 A26 AFA)."
+              },
+              {
+                "label": "Notes",
+                "content": "ANTH copy Purchased from the Cullman Endowment."
+              },
+              {
+                "label": "Contents",
+                "content": "Foreword: Families in the field / by Paul Theroux -- Introduction: Where the roads all end -- 1. From Cambridge to the Kalahari -- 2. Bushman mythology and Bushman anthropology -- 3. The early expeditions, 1951-1953 -- 4. Expedition photographers -- 5. The middle expeditions, 1955 and 1956 -- 6. Iconic Bushmen -- 7. The later expeditions, 1957-1961 -- 8. Changes in the Kalahari -- 9. Photographic legacies -- Appendix A. Expedition members -- Appendix B. Photo gallery of expedition members"
+              },
+              {
+                "label": "Summary",
+                "content": "\"Where the Roads All End\" tells the remarkable story of an American family's eight anthropological expeditions to the remote Kalahari Desert in South-West Africa (Namibia) during the 1950s. Raytheon co-founder Laurence Marshall, his wife Lorna, and children John and Elizabeth recorded the lives of some of the last remaining hunter-gatherers, the so-called Bushmen, in what is now recognized as one of the most important ventures in the anthropology of Africa. Largely self-taught as ethnographers, the family supplemented their research with motion picture film and still photography to create an unparalleled archive that documents the Ju/'hoansi and the /Gwi just as they were being settled by the government onto a \"Bushman Preserve.\" The Marshalls' films and publications popularized a strong counternarrative to existing negative stereotypes of the \"Bushman\" and revitalized academic studies of these southern African hunter-gatherers. This vivid and multilayered account of a unique family enterprise focuses on 40,000 still photographs in the archives of Harvard's Peabody Museum of Archaeology and Ethnology. Illustrated with over 300 images, \"Where the Roads All End\" reflects on the enduring ethnographic record established by the Marshalls and the influential pathways they charted in anthropological fieldwork, visual anthropology, ethnographic film, and documentary photography.-- Provided by publisher."
+              }
+            ],
+            "place": [
+              {
+                "label": "Place",
+                "content": "Kalahari Desert"
+              }
+            ],
+            "topic": [
+              {
+                "label": "Topic",
+                "content": "Ethnological expeditions--History"
+              },
+              {
+                "label": "Topic",
+                "content": "Ethnology--History"
+              },
+              {
+                "label": "Topic",
+                "content": "Visual anthropology--History"
+              },
+              {
+                "label": "Topic",
+                "content": "Social life and customs"
+              }
+            ],
+            "dataSource": [
+              {
+                "label": "Data Source",
+                "content": "Smithsonian Libraries"
+              }
+            ],
+            "objectType": [
+              {
+                "label": "Type",
+                "content": "Books"
+              }
+            ],
+            "physicalDescription": [
+              {
+                "label": "Physical description",
+                "content": "xxx, 274 pages : illustrations, maps (some color) ; 27 cm"
+              }
+            ]
+          },
+          "indexedStructured": {
+            "date": [
+              "1920s",
+              "2010s",
+              "1910s",
+              "1940s",
+              "1930s",
+              "1900s",
+              "1990s",
+              "1960s",
+              "1950s",
+              "1980s",
+              "1970s"
+            ],
+            "name": [
+              "Barbash, Ilisa",
+              "Peabody Museum of Archaeology and Ethnology",
+              "Marshall family"
+            ],
+            "place": [
+              "Kalahari Desert"
+            ],
+            "topic": [
+              "Visual anthropology",
+              "Ethnology",
+              "Expeditions",
+              "Society",
+              "History"
+            ],
+            "culture": [
+              "!Kung (African people)",
+              "San (African people)",
+              "G/wi (African people)"
+            ],
+            "language": [
+              "English language"
+            ],
+            "object_type": [
+              "Books"
+            ]
+          },
+          "descriptiveNonRepeating": {
+            "title": {
+              "label": "Title",
+              "content": "Where the roads all end : photography and anthropology in the Kalahari / Ilisa Barbash ; foreword by Paul Theroux"
+            },
+            "record_ID": "siris_sil_1062613",
+            "unit_code": "SIL",
+            "title_sort": "WHERE THE ROADS ALL END : PHOTOGRAPHY AND ANTHROPOLOGY IN THE KALAHARI ILISA BARBASH FOREWORD BY PAUL THEROUX",
+            "data_source": "Smithsonian Libraries",
+            "record_link": "https://siris-libraries.si.edu/ipac20/ipac.jsp?&profile=liball&source=~!silibraries&uri=full=3100001~!1062613~!0#focus",
+            "metadata_usage": {
+              "text": "",
+              "access": "CC0"
+            }
+          }
+        },
+        "hash": "236c3d99ebbc3c35de6308eaf01b1d3796b8ff31",
+        "docSignature": "be161770e2a2547cdabbe4f5c523cc74",
+        "timestamp": "1536912829",
+        "lastTimeUpdated": "1661961632",
+        "version": "0"
+      },
+      {
+        "id": "ld1-1646149545906-1646149688496-1",
+        "title": "Independent, fearless and rather bold : historical narrative on the Ghanzi Bushmen of Botswana",
+        "unitCode": "SIL",
+        "type": "edanmdm",
+        "url": "edanmdm:siris_sil_916740",
+        "content": {
+          "freetext": {
+            "date": [
+              {
+                "label": "Date",
+                "content": "1993"
+              }
+            ],
+            "name": [
+              {
+                "label": "Author",
+                "content": "Guenther, Mathias Georg"
+              },
+              {
+                "label": "Author",
+                "content": "Smithsonian Libraries African Art Index Project DSI"
+              },
+              {
+                "label": "Subject",
+                "content": "Baines, Thomas 1820-1875"
+              },
+              {
+                "label": "Subject",
+                "content": "Chapman, James 1831-1872"
+              }
+            ],
+            "notes": [
+              {
+                "label": "Notes",
+                "content": "Illustrations, maps."
+              }
+            ],
+            "place": [
+              {
+                "label": "Place",
+                "content": "Botswana"
+              },
+              {
+                "label": "Place",
+                "content": "Ghanzi District.)"
+              }
+            ],
+            "topic": [
+              {
+                "label": "Topic",
+                "content": "Ethnology"
+              }
+            ],
+            "dataSource": [
+              {
+                "label": "Data Source",
+                "content": "Smithsonian Libraries"
+              }
+            ],
+            "identifier": [
+              {
+                "label": "Call number",
+                "content": "Q85.8 .J865"
+              }
+            ],
+            "objectType": [
+              {
+                "label": "Type",
+                "content": "Articles"
+              }
+            ]
+          },
+          "indexedStructured": {
+            "date": [
+              "1990s"
+            ],
+            "name": [
+              "Baines, Thomas",
+              "Smithsonian Libraries",
+              "Guenther, Mathias Georg",
+              "Chapman, James"
+            ],
+            "place": [
+              "Ghanzi District.)",
+              "Botswana"
+            ],
+            "topic": [
+              "Ethnology"
+            ],
+            "culture": [
+              "!Kung (African people)",
+              "Naron (African people)",
+              "San (African people)"
+            ],
+            "language": [
+              "English language"
+            ],
+            "object_type": [
+              "Articles"
+            ]
+          },
+          "descriptiveNonRepeating": {
+            "title": {
+              "label": "Title",
+              "content": "Independent, fearless and rather bold : historical narrative on the Ghanzi Bushmen of Botswana"
+            },
+            "record_ID": "siris_sil_916740",
+            "unit_code": "SIL",
+            "title_sort": "INDEPENDENT FEARLESS AND RATHER BOLD : HISTORICAL NARRATIVE ON THE GHANZI BUSHMEN OF BOTSWANA",
+            "data_source": "Smithsonian Libraries",
+            "record_link": "https://siris-libraries.si.edu/ipac20/ipac.jsp?&profile=liball&source=~!silibraries&uri=full=3100001~!916740~!0#focus",
+            "metadata_usage": {
+              "text": "",
+              "access": "CC0"
+            }
+          }
+        },
+        "hash": "e712d3d2ee33aa5b1f782f62a7ca60220d733b82",
+        "docSignature": "0c0d4e3e332a05567e8aa888bd442ca2",
+        "timestamp": "1498153750",
+        "lastTimeUpdated": "1661975497",
+        "version": "0"
+      },
+      {
+        "id": "ld1-1646149545906-1646149918170-0",
+        "title": "The Dobe Ju/'hoansi / Richard B. Lee",
+        "unitCode": "SIL",
+        "type": "edanmdm",
+        "url": "edanmdm:siris_sil_838539",
+        "content": {
+          "freetext": {
+            "date": [
+              {
+                "label": "Date",
+                "content": "1993"
+              },
+              {
+                "label": "Date",
+                "content": "C1993"
+              }
+            ],
+            "name": [
+              {
+                "label": "Author",
+                "content": "Lee, Richard B"
+              },
+              {
+                "label": "Author",
+                "content": "Lee, Richard B Dobe !Kung"
+              }
+            ],
+            "notes": [
+              {
+                "label": "Notes",
+                "content": "Second ed. of The Dobe !Kung. 1st ed. 1984."
+              }
+            ],
+            "dataSource": [
+              {
+                "label": "Data Source",
+                "content": "Smithsonian Libraries"
+              }
+            ],
+            "objectType": [
+              {
+                "label": "Type",
+                "content": "Books"
+              }
+            ],
+            "physicalDescription": [
+              {
+                "label": "Physical description",
+                "content": "xv, 207 p. : ill., maps ; 24 cm"
+              }
+            ]
+          },
+          "indexedStructured": {
+            "date": [
+              "1990s"
+            ],
+            "name": [
+              "Lee, Richard B"
+            ],
+            "culture": [
+              "!Kung (African people)",
+              "San (African people)"
+            ],
+            "language": [
+              "English language"
+            ],
+            "object_type": [
+              "Books"
+            ]
+          },
+          "descriptiveNonRepeating": {
+            "title": {
+              "label": "Title",
+              "content": "The Dobe Ju/'hoansi / Richard B. Lee"
+            },
+            "record_ID": "siris_sil_838539",
+            "unit_code": "SIL",
+            "title_sort": "DOBE JUHOANSI RICHARD B LEE",
+            "data_source": "Smithsonian Libraries",
+            "record_link": "https://siris-libraries.si.edu/ipac20/ipac.jsp?&profile=liball&source=~!silibraries&uri=full=3100001~!838539~!0#focus",
+            "metadata_usage": {
+              "text": "",
+              "access": "CC0"
+            }
+          }
+        },
+        "hash": "fb6de887252fa784a6acfa90d624a8167267039e",
+        "docSignature": "723e0d0078e4f8ce663f78b13ca5ebb0",
+        "timestamp": "1498154449",
+        "lastTimeUpdated": "1661964272",
+        "version": "0"
+      },
+      {
+        "id": "ld1-1646149545906-1646150949882-1",
+        "title": "Música tradicional e aculturada dos Kung! de Angola; uma introduçao ao instrumentário, estrutura e técnicas de execuçao da música dos Kung!, incidindo em especial nos factores psicologico-sociais da actual mudança na cultura dos povos Khoisan. Tradutor, João de Freitas Branco",
+        "unitCode": "SIL",
+        "type": "edanmdm",
+        "url": "edanmdm:siris_sil_258867",
+        "content": {
+          "freetext": {
+            "date": [
+              {
+                "label": "Date",
+                "content": "1970"
+              },
+              {
+                "label": "Date",
+                "content": "To 1500"
+              }
+            ],
+            "name": [
+              {
+                "label": "Author",
+                "content": "Kubik, Gerhard 1934-"
+              }
+            ],
+            "notes": [
+              {
+                "label": "Notes",
+                "content": "At head of title: Junta de Investigações do Ultramar. Centro de Estudos de Antropologia Cultural."
+              }
+            ],
+            "place": [
+              {
+                "label": "Place",
+                "content": "Angola"
+              }
+            ],
+            "topic": [
+              {
+                "label": "Topic",
+                "content": "Music"
+              },
+              {
+                "label": "Topic",
+                "content": "Music--History and criticism"
+              },
+              {
+                "label": "Topic",
+                "content": "Musical instruments"
+              }
+            ],
+            "dataSource": [
+              {
+                "label": "Data Source",
+                "content": "Smithsonian Libraries"
+              }
+            ],
+            "identifier": [
+              {
+                "label": "Call number",
+                "content": "ML3547.K87X 1970"
+              }
+            ],
+            "objectType": [
+              {
+                "label": "Type",
+                "content": "Books"
+              }
+            ],
+            "physicalDescription": [
+              {
+                "label": "Physical description",
+                "content": "88 p. illus., music. 25 cm"
+              }
+            ]
+          },
+          "indexedStructured": {
+            "date": [
+              "1500s",
+              "1970s"
+            ],
+            "name": [
+              "Kubik, Gerhard"
+            ],
+            "place": [
+              "Angola"
+            ],
+            "topic": [
+              "Musical instruments",
+              "Music",
+              "History and criticism"
+            ],
+            "culture": [
+              "!Kung (African people)"
+            ],
+            "language": [
+              "Portuguese language"
+            ],
+            "object_type": [
+              "Books"
+            ]
+          },
+          "descriptiveNonRepeating": {
+            "title": {
+              "label": "Title",
+              "content": "Música tradicional e aculturada dos Kung! de Angola; uma introduçao ao instrumentário, estrutura e técnicas de execuçao da música dos Kung!, incidindo em especial nos factores psicologico-sociais da actual mudança na cultura dos povos Khoisan. Tradutor, João de Freitas Branco"
+            },
+            "record_ID": "siris_sil_258867",
+            "unit_code": "SIL",
+            "title_sort": "MÚSICA TRADICIONAL E ACULTURADA DOS KUNG DE ANGOLA UMA INTRODUÇAO AO INSTRUMENTÁRIO ESTRUTURA E TÉCNICAS DE EXECUÇAO DA MÚSICA DOS KUNG INCIDINDO EM ESPECIAL NOS FACTORES PSICOLOGICOSOCIAIS DA ACTUAL MUDANÇA NA CULTURA DOS POVOS KHOISAN TRADUTOR JOÃO DE FREITAS BRANCO",
+            "data_source": "Smithsonian Libraries",
+            "record_link": "https://siris-libraries.si.edu/ipac20/ipac.jsp?&profile=liball&source=~!silibraries&uri=full=3100001~!258867~!0#focus",
+            "metadata_usage": {
+              "text": "",
+              "access": "CC0"
+            }
+          }
+        },
+        "hash": "f378a6b6e3fa4c1a36b3f4240317b5628ee1f0e1",
+        "docSignature": "bfdb6fa6d9f89bb38e925c176567a3b1",
+        "timestamp": "1498154026",
+        "lastTimeUpdated": "1661962083",
+        "version": "0"
+      },
+      {
+        "id": "ld1-1646149545906-1646150154363-1",
+        "title": "Social and ceremonial aspects of death among !Kung San / by Polly Wiessner",
+        "unitCode": "SIL",
+        "type": "edanmdm",
+        "url": "edanmdm:siris_sil_933454",
+        "content": {
+          "freetext": {
+            "date": [
+              {
+                "label": "Date",
+                "content": "1983"
+              }
+            ],
+            "name": [
+              {
+                "label": "Author",
+                "content": "Wiessner, Pauline Wilson 1947-"
+              },
+              {
+                "label": "Author",
+                "content": "Smithsonian Libraries African Art Index Project DSI"
+              }
+            ],
+            "topic": [
+              {
+                "label": "Topic",
+                "content": "Death"
+              },
+              {
+                "label": "Topic",
+                "content": "!Kung (African people)--Funeral customs and rites"
+              }
+            ],
+            "dataSource": [
+              {
+                "label": "Data Source",
+                "content": "Smithsonian Libraries"
+              }
+            ],
+            "identifier": [
+              {
+                "label": "Call number",
+                "content": "DT790 .B749"
+              }
+            ],
+            "objectType": [
+              {
+                "label": "Type",
+                "content": "Articles"
+              }
+            ]
+          },
+          "indexedStructured": {
+            "date": [
+              "1980s"
+            ],
+            "name": [
+              "Wiessner, Pauline Wilson",
+              "Smithsonian Libraries"
+            ],
+            "topic": [
+              "Funeral rites and ceremonies",
+              "Death"
+            ],
+            "culture": [
+              "!Kung (African people)"
+            ],
+            "language": [
+              "English language"
+            ],
+            "object_type": [
+              "Articles"
+            ]
+          },
+          "descriptiveNonRepeating": {
+            "title": {
+              "label": "Title",
+              "content": "Social and ceremonial aspects of death among !Kung San / by Polly Wiessner"
+            },
+            "record_ID": "siris_sil_933454",
+            "unit_code": "SIL",
+            "title_sort": "SOCIAL AND CEREMONIAL ASPECTS OF DEATH AMONG KUNG SAN BY POLLY WIESSNER",
+            "data_source": "Smithsonian Libraries",
+            "record_link": "https://siris-libraries.si.edu/ipac20/ipac.jsp?&profile=liball&source=~!silibraries&uri=full=3100001~!933454~!0#focus",
+            "metadata_usage": {
+              "text": "",
+              "access": "CC0"
+            }
+          }
+        },
+        "hash": "f47673fe46814a70bc19d9a09a7354fceef0d5a0",
+        "docSignature": "bbc243ae639a4d6886b94c7186b4d474",
+        "timestamp": "1498153750",
+        "lastTimeUpdated": "1661962470",
+        "version": "0"
+      },
+      {
+        "id": "ld1-1646149545906-1646150059767-0",
+        "title": "The Bushmen / by Alf Wannenburgh",
+        "unitCode": "SIL",
+        "type": "edanmdm",
+        "url": "edanmdm:siris_sil_119143",
+        "content": {
+          "freetext": {
+            "date": [
+              {
+                "label": "Date",
+                "content": "1979"
+              },
+              {
+                "label": "Date",
+                "content": "[1979]"
+              }
+            ],
+            "name": [
+              {
+                "label": "Author",
+                "content": "Wannenburgh, Alf"
+              }
+            ],
+            "dataSource": [
+              {
+                "label": "Data Source",
+                "content": "Smithsonian Libraries"
+              }
+            ],
+            "identifier": [
+              {
+                "label": "Call number",
+                "content": "DT709 .W36X"
+              },
+              {
+                "label": "Call number",
+                "content": "DT709.W36X"
+              }
+            ],
+            "objectType": [
+              {
+                "label": "Type",
+                "content": "Books"
+              }
+            ],
+            "physicalDescription": [
+              {
+                "label": "Physical description",
+                "content": "64 p. ; ill.(some in col.) : 31 cm"
+              }
+            ]
+          },
+          "indexedStructured": {
+            "date": [
+              "1970s"
+            ],
+            "name": [
+              "Wannenburgh, Alf"
+            ],
+            "culture": [
+              "!Kung (African people)"
+            ],
+            "language": [
+              "English language"
+            ],
+            "object_type": [
+              "Books"
+            ]
+          },
+          "descriptiveNonRepeating": {
+            "title": {
+              "label": "Title",
+              "content": "The Bushmen / by Alf Wannenburgh"
+            },
+            "record_ID": "siris_sil_119143",
+            "unit_code": "SIL",
+            "title_sort": "BUSHMEN BY ALF WANNENBURGH",
+            "data_source": "Smithsonian Libraries",
+            "record_link": "https://siris-libraries.si.edu/ipac20/ipac.jsp?&profile=liball&source=~!silibraries&uri=full=3100001~!119143~!0#focus",
+            "metadata_usage": {
+              "text": "",
+              "access": "CC0"
+            }
+          }
+        },
+        "hash": "b3441143694ded1e97467324b4c86f4dcc8217ba",
+        "docSignature": "66d65a58ed7cbd583ed102afda4288b2",
+        "timestamp": "1498153952",
+        "lastTimeUpdated": "1661962663",
+        "version": "0"
+      }
+    ],
+    "rowCount": 132,
+    "message": "content found"
+  }
+}
