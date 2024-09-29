@@ -1,31 +1,55 @@
    // app/components/FilterSection.jsx
    'use client'
 
-   import { useState } from 'react';
+   import React, { useState, useEffect } from 'react';
    import { useRouter } from 'next/navigation';
-   import culturesData from '../../data/Harvard/cultures.json';
+   import harvardCulturesData from '../../data/Harvard/cultures.json';  
+   import clevelandCulturesData from '../../data/Cleveland/cultures.json'; // Ensure this path is correct
 
    export default function FilterSection() {
+     const [selectedCollection, setSelectedCollection] = useState('');
      const [selectedCulture, setSelectedCulture] = useState('');
+     const [cultures, setCultures] = useState([]);
      const [isLoading, setIsLoading] = useState(false);
      const router = useRouter();
 
+     useEffect(() => {
+       console.log('[FilterSection] Selected collection:', selectedCollection);
+       if (selectedCollection === 'harvard') {
+         setCultures(harvardCulturesData);
+         console.log('[FilterSection] Harvard cultures data loaded:', harvardCulturesData);
+       } else if (selectedCollection === 'cleveland') {
+         setCultures(clevelandCulturesData);
+         console.log('[FilterSection] Cleveland cultures data loaded:', clevelandCulturesData);
+       } else {
+         setCultures([]);
+       }
+       setSelectedCulture('');
+     }, [selectedCollection]);
+
+     const handleCollectionChange = (e) => {
+       setSelectedCollection(e.target.value);
+       console.log('[FilterSection] Collection changed to:', e.target.value);
+     };
+
      const handleCultureChange = (e) => {
-       const cultureId = e.target.value;
-       const selectedCultureObject = culturesData.find(c => c.cultureId.toString() === cultureId);
-       console.log(`[FilterSection] Selected culture:`, selectedCultureObject);
-       setSelectedCulture(cultureId);
+       setSelectedCulture(e.target.value);
+       console.log('[FilterSection] Culture changed to:', e.target.value);
      };
 
      const handleCreateExhibition = async () => {
        if (selectedCulture) {
-         const selectedCultureObject = culturesData.find(c => c.cultureId.toString() === selectedCulture);
-         console.log(`[FilterSection] Sending to exhibition page:`, {
-           id: selectedCulture,
-           culture: selectedCultureObject.culture
+         const selectedCultureData = cultures.find(c => 
+           typeof c === 'object' ? c.culture === selectedCulture : c === selectedCulture
+         );
+         const cultureId = selectedCollection === 'harvard' ? selectedCultureData.cultureId : null;
+         console.log('[FilterSection] Creating exhibition with:', {
+           collection: selectedCollection,
+           culture: selectedCulture,
+           cultureId: cultureId
          });
          setIsLoading(true);
-         router.push(`/exhibition?id=${selectedCulture}`);
+         router.push(`/exhibition?collection=${selectedCollection}&culture=${encodeURIComponent(selectedCulture)}${cultureId ? `&cultureId=${cultureId}` : ''}`);
        } else {
          console.warn('[FilterSection] Attempted to create exhibition without selecting a culture');
          alert('Please select a culture first');
@@ -38,20 +62,45 @@
            <h2 className="text-3xl font-serif font-bold text-foreground mb-6 text-center">
              Create Your Exhibition
            </h2>
-           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
-             <select 
-               onChange={handleCultureChange} 
-               value={selectedCulture}
-               className="w-full sm:w-auto bg-background text-foreground border border-softGray rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-highlight"
-             >
-               <option value="">Select Culture</option>
-               {culturesData.map((culture) => (
-                 <option key={culture.cultureId} value={culture.cultureId}>
-                   {culture.culture}
-                 </option>
-               ))}
-             </select>
+           <div className="flex space-x-4 mb-4">
+             <div className="w-1/2">
+               <label htmlFor="collection" className="block text-sm font-medium text-gray-700">
+                 Select Collection
+               </label>
+               <select
+                 id="collection"
+                 value={selectedCollection}
+                 onChange={handleCollectionChange}
+                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+               >
+                 <option value="">Select a collection</option>
+                 <option value="harvard">Harvard Art Museum</option>
+                 <option value="cleveland">The Cleveland Museum of Art</option>
+               </select>
+             </div>
 
+             <div className="w-1/2">
+               <label htmlFor="culture" className="block text-sm font-medium text-gray-700">
+                 Select Culture
+               </label>
+               <select
+                 id="culture"
+                 value={selectedCulture}
+                 onChange={handleCultureChange}
+                 disabled={!selectedCollection}
+                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+               >
+                 <option value="">Select a culture</option>
+                 {cultures.map((culture, index) => (
+                   <option key={index} value={typeof culture === 'object' ? culture.culture : culture}>
+                     {typeof culture === 'object' ? culture.culture : culture}
+                   </option>
+                 ))}
+               </select>
+             </div>
+           </div>
+
+           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
              <button 
                onClick={handleCreateExhibition} 
                disabled={!selectedCulture || isLoading}
