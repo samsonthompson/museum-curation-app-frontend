@@ -7,7 +7,7 @@ const CollectionContext = createContext();
 export function CollectionProvider({ children }) {
   const [collection, setCollection] = useState([]);
 
-  // Load collection from sessionStorage when the component mounts
+
   useEffect(() => {
     const savedCollection = sessionStorage.getItem('userCollection');
     if (savedCollection) {
@@ -15,7 +15,7 @@ export function CollectionProvider({ children }) {
     }
   }, []);
 
-  // Save collection to sessionStorage whenever it changes
+
   useEffect(() => {
     sessionStorage.setItem('userCollection', JSON.stringify(collection));
   }, [collection]);

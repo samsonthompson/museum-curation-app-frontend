@@ -52,7 +52,7 @@ Cultura is an educational web application designed for students studying specifi
 
 ## API Keys
 To use this application, you'll need API keys for:
-- Harvard Art Museums API: ['Send a request'](https://harvardartmuseums.org/collections/api)
+- Harvard Art Museums API: Click on['Send a request'](https://harvardartmuseums.org/collections/api)
 
 ## Usage Instructions
 1. On the home page, select a museum collection and choose a specific culture to explore.

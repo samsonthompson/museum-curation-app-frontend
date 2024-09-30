@@ -10,14 +10,10 @@ function extractCultures({ records }) {
 
 const culturesArray = extractCultures(harvardCultures);
 
-// Convert the array to a JSON string
 const jsonData = JSON.stringify(culturesArray, null, 2);
 
-// Write the data to a file
 writeFile('cultures.json', jsonData, (err) => {
   if (err) {
     console.error('Error writing file:', err);
-  } else {
-    console.log('Cultures data has been written to cultures.json');
   }
 });

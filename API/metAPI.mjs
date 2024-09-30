@@ -1,10 +1,10 @@
 import fetch from 'node-fetch';
 import fs from 'fs';
 
-// Function to get all unique cultures and write to a file
+
 async function getAllCulturesAndWriteToFile() {
     const baseUrl = 'https://collectionapi.metmuseum.org/public/collection/v1';
-    const batchSize = 10000; // Number of objects to fetch in each batch
+    const batchSize = 100; 
     const cultures = new Set();
 
     try {
