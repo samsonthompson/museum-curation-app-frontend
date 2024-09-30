@@ -1,21 +1,21 @@
-'use client'
+'use client';
 
 import { useState, useEffect } from 'react';
 import { useCollection } from '../contexts/collectionContext';
+import Link from 'next/link';
 
-export default function Carousel({ items, culture, collection }) {
+export default function MyCollection() {
+  const { collection, removeFromCollection } = useCollection();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [uniqueMediums, setUniqueMediums] = useState([]);
   const [selectedMedium, setSelectedMedium] = useState('');
 
-  const { addToCollection, removeFromCollection, isInCollection } = useCollection();
-
   useEffect(() => {
-    if (items && items.length > 0) {
-      const mediums = [...new Set(items.map(item => item.medium).filter(Boolean))];
+    if (collection && collection.length > 0) {
+      const mediums = [...new Set(collection.map(item => item.medium).filter(Boolean))];
       setUniqueMediums(mediums);
     }
-  }, [items, collection]);
+  }, [collection]);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % filteredItems.length);
@@ -26,38 +26,40 @@ export default function Carousel({ items, culture, collection }) {
   };
 
   const filteredItems = selectedMedium 
-    ? items.filter(item => item.medium === selectedMedium) 
-    : items;
+    ? collection.filter(item => item.medium === selectedMedium) 
+    : collection;
 
-  if (!filteredItems || filteredItems.length === 0) {
-    return <div className="text-center py-10">No items to display</div>;
+  if (collection.length === 0) {
+    return (
+      <main className="bg-offWhite min-h-screen flex items-center justify-center">
+        <p className="text-center text-softGray">
+          Your collection is empty. Start adding items from the 
+          <Link href="/" className="text-highlight hover:underline ml-1">
+            exhibition page
+          </Link>.
+        </p>
+      </main>
+    );
   }
 
   const currentItem = filteredItems[currentIndex];
 
-  const toggleCollection = () => {
-    if (isInCollection(currentItem.id)) {
-      removeFromCollection(currentItem.id);
-    } else {
-      addToCollection(currentItem);
-    }
-  };
-
   return (
-    <div className="bg-background text-foreground">
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-serif font-bold mb-6 text-center">
-          {culture} entries from the {collection === 'harvard' ? 'Harvard Art' : 'Cleveland Museum of Art'} collection
+    <main className="bg-offWhite min-h-screen">
+      <section className="container mx-auto py-10 px-4">
+        <h1 className="text-4xl font-serif font-bold text-foreground mb-8 text-center">
+          My Collection
         </h1>
         
-        <div className="carousel bg-offWhite shadow-lg rounded-lg p-6">
+        {/* Carousel Section */}
+        <div className="carousel bg-background text-foreground shadow-lg rounded-lg p-6 mb-12">
           <div className="flex justify-between items-center mb-4">
             <button onClick={prevSlide} className="bg-highlight text-background px-4 py-2 rounded hover:bg-opacity-80 transition-colors">Previous</button>
             <button 
-              onClick={toggleCollection}
-              className={`bg-highlight text-background px-4 py-2 rounded hover:bg-opacity-80 transition-colors ${isInCollection(currentItem.id) ? 'bg-red-500' : ''}`}
+              onClick={() => removeFromCollection(currentItem.id)}
+              className="bg-red-500 text-background px-4 py-2 rounded hover:bg-opacity-80 transition-colors"
             >
-              {isInCollection(currentItem.id) ? '❤️ Remove' : '🤍 Add to Collection'}
+              ❤️ Remove from Collection
             </button>
             <span className="font-semibold">Entry {currentIndex + 1} of {filteredItems.length}</span>
             <button onClick={nextSlide} className="bg-highlight text-background px-4 py-2 rounded hover:bg-opacity-80 transition-colors">Next</button>
@@ -82,12 +84,12 @@ export default function Carousel({ items, culture, collection }) {
             rel="noopener noreferrer" 
             className="text-highlight hover:underline"
           >
-            View on {collection === 'harvard' ? 'Harvard Art Museums' : 'Cleveland Museum of Art'} website
+            View on original website
           </a>
         </div>
 
         {uniqueMediums.length > 1 && (
-          <div className="mb-6 mt-6">
+          <div className="mb-6">
             <label htmlFor="mediumFilter" className="mr-2 font-semibold">Filter by Medium:</label>
             <select 
               id="mediumFilter" 
@@ -105,20 +107,30 @@ export default function Carousel({ items, culture, collection }) {
             </select>
           </div>
         )}
-
-        <h3 className="text-2xl font-serif font-bold mt-8 mb-4">From this collection</h3>
-        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        
+        {/* Grid Section */}
+        <h3 className="text-2xl font-serif font-bold mt-8 mb-4">All Collection Items</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredItems.map((item, index) => (
-            <li 
-              key={index} 
-              onClick={() => setCurrentIndex(index)} 
-              className={`cursor-pointer p-2 rounded ${index === currentIndex ? 'bg-highlight text-background' : 'bg-offWhite hover:bg-highlight hover:text-background'} transition-colors`}
+            <div 
+              key={item.id} 
+              className={`bg-background rounded-lg shadow-md overflow-hidden cursor-pointer ${index === currentIndex ? 'ring-2 ring-highlight' : ''}`}
+              onClick={() => setCurrentIndex(index)}
             >
-              {item.title || `Item ${index + 1}`}
-            </li>
+              <img 
+                src={item.imageUrl} 
+                alt={item.title} 
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
+                <p className="text-softGray text-sm mb-2">{item.artist || item.culture}</p>
+                <p className="text-softGray text-sm">{item.date}</p>
+              </div>
+            </div>
           ))}
-        </ul>
-      </div>
-    </div>
+        </div>
+      </section>
+    </main>
   );
 }

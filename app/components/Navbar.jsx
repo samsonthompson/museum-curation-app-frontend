@@ -11,14 +11,11 @@ export default function Navbar() {
 
         {/* Links */}
         <div className="space-x-6">
-          <Link href="/exhibition" className="text-foreground hover:text-highlight font-semibold">
-            Exhibition
+          <Link href="/" className="text-foreground hover:text-highlight font-semibold">
+            Search
           </Link>
-          <Link href="/about" className="text-foreground hover:text-highlight font-semibold">
-            About
-          </Link>
-          <Link href="/contact" className="text-foreground hover:text-highlight font-semibold">
-            Contact
+          <Link href="/my-collection" className="text-foreground hover:text-highlight font-semibold">
+            My Collection
           </Link>
         </div>
       </div>

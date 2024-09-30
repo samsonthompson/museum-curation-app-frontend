@@ -1,15 +1,21 @@
-// Function to fetch artworks by culture and return results
 export async function fetchArtworksByCulture(culture) {
-    const url = `https://openaccess-api.clevelandart.org/api/artworks/?q=${encodeURIComponent(culture)}&limit=1000`;
-    console.log(`[fetchArtworksByCulture] Fetching URL: ${url}`);
+    const url = `https://openaccess-api.clevelandart.org/api/artworks?limit=100&has_image=1&culture=${encodeURIComponent(culture)}`;
     
-    const response = await fetch(url);
-    const data = await response.json();
-    
-    console.log(`[fetchArtworksByCulture] Total results from API: ${data.data.length}`);
-    
-    const filteredArtworks = data.data.filter(artwork => artwork.culture && artwork.culture.includes(culture));
-    console.log(`[fetchArtworksByCulture] Filtered results for culture "${culture}": ${filteredArtworks.length}`);
-    
-    return filteredArtworks;
+    try {
+        const response = await fetch(url, { cache: 'no-store' });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data && data.data && Array.isArray(data.data)) {
+            return data.data;
+        } else {
+            return [];
+        }
+    } catch (error) {
+        throw error;
+    }
 }

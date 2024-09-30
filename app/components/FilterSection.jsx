@@ -1,10 +1,9 @@
-   // app/components/FilterSection.jsx
    'use client'
 
    import React, { useState, useEffect } from 'react';
    import { useRouter } from 'next/navigation';
    import harvardCulturesData from '../../data/Harvard/cultures.json';  
-   import clevelandCulturesData from '../../data/Cleveland/cultures.json'; // Ensure this path is correct
+   import clevelandCulturesData from '../../data/Cleveland/cultures.json';
 
    export default function FilterSection() {
      const [selectedCollection, setSelectedCollection] = useState('');
@@ -14,13 +13,10 @@
      const router = useRouter();
 
      useEffect(() => {
-       console.log('[FilterSection] Selected collection:', selectedCollection);
        if (selectedCollection === 'harvard') {
          setCultures(harvardCulturesData);
-         console.log('[FilterSection] Harvard cultures data loaded:', harvardCulturesData);
        } else if (selectedCollection === 'cleveland') {
          setCultures(clevelandCulturesData);
-         console.log('[FilterSection] Cleveland cultures data loaded:', clevelandCulturesData);
        } else {
          setCultures([]);
        }
@@ -29,12 +25,10 @@
 
      const handleCollectionChange = (e) => {
        setSelectedCollection(e.target.value);
-       console.log('[FilterSection] Collection changed to:', e.target.value);
      };
 
      const handleCultureChange = (e) => {
        setSelectedCulture(e.target.value);
-       console.log('[FilterSection] Culture changed to:', e.target.value);
      };
 
      const handleCreateExhibition = async () => {
@@ -43,15 +37,9 @@
            typeof c === 'object' ? c.culture === selectedCulture : c === selectedCulture
          );
          const cultureId = selectedCollection === 'harvard' ? selectedCultureData.cultureId : null;
-         console.log('[FilterSection] Creating exhibition with:', {
-           collection: selectedCollection,
-           culture: selectedCulture,
-           cultureId: cultureId
-         });
          setIsLoading(true);
          router.push(`/exhibition?collection=${selectedCollection}&culture=${encodeURIComponent(selectedCulture)}${cultureId ? `&cultureId=${cultureId}` : ''}`);
        } else {
-         console.warn('[FilterSection] Attempted to create exhibition without selecting a culture');
          alert('Please select a culture first');
        }
      };
