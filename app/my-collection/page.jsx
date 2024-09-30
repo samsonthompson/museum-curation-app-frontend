@@ -33,9 +33,9 @@ export default function MyCollection() {
     return (
       <main className="bg-offWhite min-h-screen flex items-center justify-center">
         <p className="text-center text-softGray">
-          Your collection is empty. Start adding items from the 
+          Your collection is empty. Start adding items after searching our
           <Link href="/" className="text-highlight hover:underline ml-1">
-            exhibition page
+             collections
           </Link>.
         </p>
       </main>

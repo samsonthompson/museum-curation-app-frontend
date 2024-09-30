@@ -72,7 +72,7 @@ Cultura is particularly useful for:
 - Creating visual presentations or virtual exhibitions for class projects
 
 ## Deployed Version
-The live version of this application can be found at: [https://cultura-art-curator.vercel.app](https://cultura-art-curator.vercel.app)
+The live version of this application can be found at: [https://cultura-liard.vercel.app](https://cultura-liard.vercel.app)
 
 ## Login Credentials
 This application currently does not require login credentials. All features are accessible without authentication, making it easy for students to use without barriers.
