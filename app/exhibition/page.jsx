@@ -78,5 +78,13 @@ export default async function Exhibition({ searchParams }) {
     return <div>No items found for this culture. Please try another culture.</div>;
   }
 
-  return <Carousel items={exhibitionData} culture={cultureName} collection={collection} />;
+  return (
+    <div className="container mx-auto px-4 py-2"> 
+      <h1 className="text-xl font-semibold mb-2 text-center">
+        {cultureName} entries from the {collection === 'harvard' ? 'Harvard Art' : 'Cleveland Museum of Art'} collection
+      </h1>
+
+      <Carousel items={exhibitionData} culture={cultureName} collection={collection} />
+    </div>
+  );
 }

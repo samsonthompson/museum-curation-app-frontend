@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useCollection } from '../contexts/collectionContext';
+import ImageSlider from './ImageSlider';
 
 export default function Carousel({ items, culture, collection }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -11,19 +12,14 @@ export default function Carousel({ items, culture, collection }) {
   const { addToCollection, removeFromCollection, isInCollection } = useCollection();
 
   useEffect(() => {
+    console.log('Carousel items:', items);
+    console.log('Selected culture:', culture);
+    console.log('Selected collection:', collection);
     if (items && items.length > 0) {
       const mediums = [...new Set(items.map(item => item.medium).filter(Boolean))];
       setUniqueMediums(mediums);
     }
   }, [items, collection]);
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % filteredItems.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + filteredItems.length) % filteredItems.length);
-  };
 
   const filteredItems = selectedMedium 
     ? items.filter(item => item.medium === selectedMedium) 
@@ -43,47 +39,49 @@ export default function Carousel({ items, culture, collection }) {
     }
   };
 
+  const handleSlideChange = (newIndex) => {
+    setCurrentIndex(newIndex);
+  };
+
   return (
     <div className="bg-background text-foreground">
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-serif font-bold mb-6 text-center">
-          {culture} entries from the {collection === 'harvard' ? 'Harvard Art' : 'Cleveland Museum of Art'} collection
-        </h1>
-        
+      <div className="container mx-auto px-4 pt-0 pb-8">
         <div className="carousel bg-offWhite shadow-lg rounded-lg p-6">
           <div className="flex justify-between items-center mb-4">
-            <button onClick={prevSlide} className="bg-highlight text-background px-4 py-2 rounded hover:bg-opacity-80 transition-colors">Previous</button>
-            <button 
-              onClick={toggleCollection}
-              className={`bg-highlight text-background px-4 py-2 rounded hover:bg-opacity-80 transition-colors ${isInCollection(currentItem.id) ? 'bg-red-500' : ''}`}
-            >
-              {isInCollection(currentItem.id) ? '❤️ Remove' : '🤍 Add to Collection'}
-            </button>
-            <span className="font-semibold">Entry {currentIndex + 1} of {filteredItems.length}</span>
-            <button onClick={nextSlide} className="bg-highlight text-background px-4 py-2 rounded hover:bg-opacity-80 transition-colors">Next</button>
+            <h2 className="text-xl font-serif font-semibold">
+              {currentItem.title || 'Untitled'}
+            </h2>
+            <div className="flex items-center">
+              <button 
+                onClick={toggleCollection}
+                className={`bg-gray-500 text-white px-2 py-1 rounded hover:bg-opacity-80 transition-colors mr-4 ${isInCollection(currentItem.id) ? 'bg-red-500' : ''}`}
+              >
+                {isInCollection(currentItem.id) ? '❤️ Remove' : '🤍 Add to Collection'}
+              </button>
+            </div>
           </div>
 
-          <h2 className="text-2xl font-serif font-bold mb-4 text-center">{currentItem.title || 'Untitled'}</h2>
-          {currentItem.imageUrl && (
-            <img 
-              src={currentItem.imageUrl} 
-              alt={currentItem.title || 'Artwork'} 
-              className="max-w-full h-auto mx-auto mb-4 rounded shadow-md" 
-            />
-          )}
-          <p className="mb-2">{currentItem.description || 'No description available'}</p>
-          <p className="font-semibold">Medium: {currentItem.medium || 'Unknown'}</p>
-          <p>Date: {currentItem.date || 'Unknown'}</p>
-          <p>Dimensions: {currentItem.dimensions || 'Not specified'}</p>
-          <p>Culture: {currentItem.culture || 'Not specified'}</p>
-          <a 
-            href={currentItem.url} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-highlight hover:underline"
-          >
-            View on {collection === 'harvard' ? 'Harvard Art Museums' : 'Cleveland Museum of Art'} website
-          </a>
+          <ImageSlider 
+            items={filteredItems} 
+            onSlideChange={handleSlideChange}
+            currentIndex={currentIndex}
+          />
+
+          <div className="mt-4">
+            <p className="mb-2">{currentItem.description || 'No description available'}</p>
+            <p className="font-semibold">Medium: {currentItem.medium || 'Unknown'}</p>
+            <p>Date: {currentItem.date || 'Unknown'}</p>
+            <p>Dimensions: {currentItem.dimensions || 'Not specified'}</p>
+            <p>Culture: {currentItem.culture || 'Not specified'}</p>
+            <a 
+              href={currentItem.url} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-highlight hover:underline"
+            >
+              View on {collection === 'harvard' ? 'Harvard Art Museums' : 'Cleveland Museum of Art'} website
+            </a>
+          </div>
         </div>
 
         {uniqueMediums.length > 1 && (

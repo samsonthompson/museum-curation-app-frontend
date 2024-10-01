@@ -4,6 +4,12 @@
    import { useRouter } from 'next/navigation';
    import harvardCulturesData from '../../data/Harvard/cultures.json';  
    import clevelandCulturesData from '../../data/Cleveland/cultures.json';
+   import FilterDropdown from './FilterDropdown';
+
+   const collectionNames = {
+     harvard: 'Harvard Art Museums',
+     cleveland: 'Cleveland Museum of Art'
+   };
 
    export default function FilterSection() {
      const [selectedCollection, setSelectedCollection] = useState('');
@@ -13,90 +19,93 @@
      const router = useRouter();
 
      useEffect(() => {
+       console.log('useEffect triggered. selectedCollection:', selectedCollection);
        if (selectedCollection === 'harvard') {
+         console.log('Setting Harvard cultures:', harvardCulturesData);
          setCultures(harvardCulturesData);
        } else if (selectedCollection === 'cleveland') {
+         console.log('Setting Cleveland cultures:', clevelandCulturesData);
          setCultures(clevelandCulturesData);
        } else {
+         console.log('Clearing cultures');
          setCultures([]);
        }
        setSelectedCulture('');
      }, [selectedCollection]);
 
-     const handleCollectionChange = (e) => {
-       setSelectedCollection(e.target.value);
+     const handleCollectionSelect = (option) => {
+       console.log('Collection selected:', option);
+       setSelectedCollection(option);
      };
 
-     const handleCultureChange = (e) => {
-       setSelectedCulture(e.target.value);
+     const handleCultureSelect = (option) => {
+       console.log('Culture selected:', option);
+       const culture = typeof option === 'object' ? option.culture : option;
+       console.log('Parsed culture:', culture);
+       setSelectedCulture(culture);
      };
 
-     const handleCreateExhibition = async () => {
+     const handleExploreThisCulture = async () => {
+       console.log('Create exhibition clicked. selectedCulture:', selectedCulture);
        if (selectedCulture) {
          const selectedCultureData = cultures.find(c => 
            typeof c === 'object' ? c.culture === selectedCulture : c === selectedCulture
          );
+         console.log('Selected culture data:', selectedCultureData);
          const cultureId = selectedCollection === 'harvard' ? selectedCultureData.cultureId : null;
+         console.log('Culture ID:', cultureId);
          setIsLoading(true);
-         router.push(`/exhibition?collection=${selectedCollection}&culture=${encodeURIComponent(selectedCulture)}${cultureId ? `&cultureId=${cultureId}` : ''}`);
+         const url = `/exhibition?collection=${selectedCollection}&culture=${encodeURIComponent(selectedCulture)}${cultureId ? `&cultureId=${cultureId}` : ''}`;
+         console.log('Navigating to:', url);
+         router.push(url);
        } else {
+         console.log('No culture selected, showing alert');
          alert('Please select a culture first');
        }
      };
 
+     console.log('Rendering FilterSection. State:', { selectedCollection, selectedCulture, cultures, isLoading });
+
      return (
        <section className="bg-offWhite py-10 px-4">
          <div className="container mx-auto max-w-2xl">
-           <h2 className="text-3xl font-serif font-bold text-foreground mb-6 text-center">
-             Create Your Exhibition
+           <h2 className="text-2xl font-serif font-bold text-foreground mb-6 text-center">
+             Explore Our Collections
            </h2>
            <div className="flex space-x-4 mb-4">
              <div className="w-1/2">
-               <label htmlFor="collection" className="block text-sm font-medium text-gray-700">
-                 Select Collection
-               </label>
-               <select
-                 id="collection"
-                 value={selectedCollection}
-                 onChange={handleCollectionChange}
-                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-               >
-                 <option value="">Select a collection</option>
-                 <option value="harvard">Harvard Art Museum</option>
-                 <option value="cleveland">The Cleveland Museum of Art</option>
-               </select>
+               <FilterDropdown 
+                 title={selectedCollection ? collectionNames[selectedCollection] : "Select Collection"}
+                 options={[
+                   { value: 'harvard', label: 'Harvard Art Museums' },
+                   { value: 'cleveland', label: 'Cleveland Museum of Art' }
+                 ]}
+                 onSelect={handleCollectionSelect}
+               />
              </div>
 
              <div className="w-1/2">
-               <label htmlFor="culture" className="block text-sm font-medium text-gray-700">
-                 Select Culture
-               </label>
-               <select
-                 id="culture"
-                 value={selectedCulture}
-                 onChange={handleCultureChange}
+               <FilterDropdown 
+                 title={selectedCulture || "Select Culture"}
+                 options={cultures.map(c => {
+                   
+                   return typeof c === 'object' ? c.culture : c;
+                 })}
+                 onSelect={handleCultureSelect}
                  disabled={!selectedCollection}
-                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-               >
-                 <option value="">Select a culture</option>
-                 {cultures.map((culture, index) => (
-                   <option key={index} value={typeof culture === 'object' ? culture.culture : culture}>
-                     {typeof culture === 'object' ? culture.culture : culture}
-                   </option>
-                 ))}
-               </select>
+               />
              </div>
            </div>
 
            <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
              <button 
-               onClick={handleCreateExhibition} 
+               onClick={handleExploreThisCulture} 
                disabled={!selectedCulture || isLoading}
                className={`w-full sm:w-auto bg-highlight text-background font-semibold px-6 py-2 rounded 
                  ${!selectedCulture || isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-opacity-80'} 
                  transition-colors`}
              >
-               {isLoading ? 'Creating...' : 'CREATE YOUR EXHIBITION'}
+               {isLoading ? 'Creating...' : 'Explore This Culture'}
              </button>
            </div>
          </div>
