@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useCollection } from '../contexts/collectionContext';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function MyCollection() {
   const { collection, removeFromCollection } = useCollection();
@@ -67,8 +68,10 @@ export default function MyCollection() {
 
           <h2 className="text-2xl font-serif font-bold mb-4 text-center">{currentItem.title || 'Untitled'}</h2>
           {currentItem.imageUrl && (
-            <img 
+            <Image 
               src={currentItem.imageUrl} 
+              layout="fill" 
+              objectFit="contain" 
               alt={currentItem.title || 'Artwork'} 
               className="max-w-full h-auto mx-auto mb-4 rounded shadow-md" 
             />
@@ -117,8 +120,10 @@ export default function MyCollection() {
               className={`bg-background rounded-lg shadow-md overflow-hidden cursor-pointer ${index === currentIndex ? 'ring-2 ring-highlight' : ''}`}
               onClick={() => setCurrentIndex(index)}
             >
-              <img 
+              <Image 
                 src={item.imageUrl} 
+                layout="fill" 
+                objectFit="contain" 
                 alt={item.title} 
                 className="w-full h-48 object-cover"
               />

@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react';
+import Image from 'next/image';
 
 const ChevronLeft = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -35,23 +36,24 @@ const ImageSlider = ({ items, onSlideChange, currentIndex }) => {
           >
             {item.imageUrl ? (
               <div className="w-full h-full flex items-center justify-center bg-gray-100">
-                <img
+                <Image
                   src={item.imageUrl}
-                  className="max-w-full max-h-full object-contain"
+                  layout="fill"
+                  objectFit="contain"
                   alt={item.title}
                 />
               </div>
             ) : (
               <div className="w-full h-full flex items-center justify-center bg-gray-100">
                 <div className="text-center">
-                  <p className="text-sm text-mediumgrey">No image available</p>
-                  <p className="text-sm text-highlight">
+                  <p className="text-sm text-offWhite">No image available</p>
+                  <p className="text-sm text-offWhite">
                     Check if an image is available at the{' '}
                     <a 
                       href={item.url} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="underline hover:text-grey"
+                      className="underline text-darkGray hover:text-highlight"
                     >
                       source
                     </a>.

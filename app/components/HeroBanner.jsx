@@ -21,7 +21,7 @@ export default function HeroBanner() {
             Create Your Own Virtual Exhibitions from World-Class Collections
             </h1>
             <p className="text-sm mt-1">
-            Because Real Museums Don't Let You Rearrange the Art
+            Because Real Museums Don&apos;t Let You Rearrange the Art
             </p>
           </div>
         </div>

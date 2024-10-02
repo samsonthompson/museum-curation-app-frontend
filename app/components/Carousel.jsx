@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCollection } from '../contexts/collectionContext';
 import ImageSlider from './ImageSlider';
 
@@ -19,7 +19,7 @@ export default function Carousel({ items, culture, collection }) {
       const mediums = [...new Set(items.map(item => item.medium).filter(Boolean))];
       setUniqueMediums(mediums);
     }
-  }, [items, collection]);
+  }, [items, culture, collection]); // Add 'culture' to the dependency array
 
   const filteredItems = selectedMedium 
     ? items.filter(item => item.medium === selectedMedium) 
