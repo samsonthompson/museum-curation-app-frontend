@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useCollection } from '../contexts/collectionContext';
 import Link from 'next/link';
-import Image from 'next/image';
+import ImageSlider from '../components/ImageSlider';
 
 export default function MyCollection() {
   const { collection, removeFromCollection } = useCollection();
@@ -17,14 +17,6 @@ export default function MyCollection() {
       setUniqueMediums(mediums);
     }
   }, [collection]);
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % filteredItems.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + filteredItems.length) % filteredItems.length);
-  };
 
   const filteredItems = selectedMedium 
     ? collection.filter(item => item.medium === selectedMedium) 
@@ -45,6 +37,10 @@ export default function MyCollection() {
 
   const currentItem = filteredItems[currentIndex];
 
+  const handleSlideChange = (newIndex) => {
+    setCurrentIndex(newIndex);
+  };
+
   return (
     <main className="bg-offWhite min-h-screen">
       <section className="container mx-auto py-10 px-4">
@@ -52,10 +48,10 @@ export default function MyCollection() {
           My Collection
         </h1>
         
-        {/* Carousel Section */}
+        {/* Image Slider Section */}
         <div className="carousel bg-background text-foreground shadow-lg rounded-lg p-6 mb-12">
           <div className="flex justify-between items-center mb-4">
-            <button onClick={prevSlide} className="bg-highlight text-background px-4 py-2 rounded hover:bg-opacity-80 transition-colors">Previous</button>
+            <button onClick={() => setCurrentIndex((prevIndex) => (prevIndex - 1 + filteredItems.length) % filteredItems.length)} className="bg-highlight text-background px-4 py-2 rounded hover:bg-opacity-80 transition-colors">Previous</button>
             <button 
               onClick={() => removeFromCollection(currentItem.id)}
               className="bg-red-500 text-background px-4 py-2 rounded hover:bg-opacity-80 transition-colors"
@@ -63,19 +59,15 @@ export default function MyCollection() {
               ❤️ Remove from Collection
             </button>
             <span className="font-semibold">Entry {currentIndex + 1} of {filteredItems.length}</span>
-            <button onClick={nextSlide} className="bg-highlight text-background px-4 py-2 rounded hover:bg-opacity-80 transition-colors">Next</button>
+            <button onClick={() => setCurrentIndex((prevIndex) => (prevIndex + 1) % filteredItems.length)} className="bg-highlight text-background px-4 py-2 rounded hover:bg-opacity-80 transition-colors">Next</button>
           </div>
 
           <h2 className="text-2xl font-serif font-bold mb-4 text-center">{currentItem.title || 'Untitled'}</h2>
-          {currentItem.imageUrl && (
-            <Image 
-              src={currentItem.imageUrl} 
-              layout="fill" 
-              objectFit="contain" 
-              alt={currentItem.title || 'Artwork'} 
-              className="max-w-full h-auto mx-auto mb-4 rounded shadow-md" 
-            />
-          )}
+          <ImageSlider 
+            items={filteredItems} 
+            onSlideChange={handleSlideChange}
+            currentIndex={currentIndex}
+          />
           <p className="mb-2">{currentItem.description || 'No description available'}</p>
           <p className="font-semibold">Medium: {currentItem.medium || 'Unknown'}</p>
           <p>Date: {currentItem.date || 'Unknown'}</p>
@@ -110,31 +102,20 @@ export default function MyCollection() {
             </select>
           </div>
         )}
-        
+
         {/* Grid Section */}
         <h3 className="text-2xl font-serif font-bold mt-8 mb-4">All Collection Items</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredItems.map((item, index) => (
-            <div 
+            <li 
               key={item.id} 
-              className={`bg-background rounded-lg shadow-md overflow-hidden cursor-pointer ${index === currentIndex ? 'ring-2 ring-highlight' : ''}`}
-              onClick={() => setCurrentIndex(index)}
+              onClick={() => setCurrentIndex(index)} 
+              className={`cursor-pointer p-2 rounded ${index === currentIndex ? 'bg-highlight text-background' : 'bg-offWhite hover:bg-highlight hover:text-background'} transition-colors`}
             >
-              <Image 
-                src={item.imageUrl} 
-                layout="fill" 
-                objectFit="contain" 
-                alt={item.title} 
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
-                <p className="text-softGray text-sm mb-2">{item.artist || item.culture}</p>
-                <p className="text-softGray text-sm">{item.date}</p>
-              </div>
-            </div>
+              {item.title || `Item ${index + 1}`}
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
     </main>
   );
